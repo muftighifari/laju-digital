@@ -1,0 +1,1791 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Laju Digital — Solusi Akun & Pembayaran Meta Ads Siap Scale</title>
+    <meta name="description" content="Laju Digital menyediakan infrastruktur Meta Ads berstandar agensi: 21 katalog Akun Personal, BM Whitelist, BM Verified Resmi, Fanpage Tua, serta Sewa Akun Whitelist No Limit & Kartu Debit Laju Pay.">
+    
+    <!-- Inline SVG Favicon matching Official Laju Digital Icon -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 120'%3E%3Crect width='120' height='120' rx='26' fill='%230B1930'/%3E%3Cg transform='translate(60 60) rotate(-9) translate(-44 -32)'%3E%3Crect x='0' y='0' width='88' height='64' rx='14' fill='%23FFFFFF'/%3E%3Crect x='11' y='12' width='20' height='14' rx='4' fill='%230B1930'/%3E%3Crect x='36' y='36' width='11' height='19' rx='5.5' fill='%232563EB'/%3E%3Crect x='52' y='25' width='11' height='30' rx='5.5' fill='%23FF2E7E'/%3E%3Crect x='68' y='13' width='11' height='42' rx='5.5' fill='%23FFB800'/%3E%3C/g%3E%3C/svg%3E">
+
+    <!-- Google Fonts: Plus Jakarta Sans & JetBrains Mono -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <!-- html2canvas for High-Res Invoice PNG Export -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+                        mono: ['"JetBrains Mono"', 'monospace'],
+                    },
+                    colors: {
+                        laju: {
+                            navy: '#0B1930',
+                            navyDark: '#060F1E',
+                            navyLight: '#112240',
+                            blue: '#2563EB',
+                            pink: '#FF2E7E',
+                            amber: '#FFB800',
+                            shopee: '#EE4D2D',
+                            wa: '#10B981',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            background-color: #0B1930;
+            color: #F8FAFC;
+            overflow-x: hidden;
+        }
+        .bg-grid-pattern {
+            background-size: 40px 40px;
+            background-image: 
+                linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+        }
+        .glass-nav {
+            background: rgba(11, 25, 48, 0.88);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+        }
+        .surface-card {
+            background: linear-gradient(180deg, rgba(17, 34, 64, 0.72) 0%, rgba(6, 15, 30, 0.9) 100%);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+        .surface-card-hover {
+            transition: all 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .surface-card-hover:hover {
+            transform: translateY(-3px);
+            border-color: rgba(37, 99, 235, 0.45);
+            box-shadow: 0 18px 38px -15px rgba(6, 15, 30, 0.85);
+        }
+        .brand-gradient-text {
+            background: linear-gradient(90deg, #60A5FA 0%, #FF2E7E 52%, #FFB800 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .brand-bar-border {
+            background: linear-gradient(90deg, #2563EB 0%, #FF2E7E 50%, #FFB800 100%);
+        }
+        input[type=range] {
+            -webkit-appearance: none;
+            background: transparent;
+        }
+        input[type=range]::-webkit-slider-runnable-track {
+            width: 100%;
+            height: 8px;
+            cursor: pointer;
+            background: linear-gradient(90deg, #2563EB 0%, #FF2E7E 55%, #FFB800 100%);
+            border-radius: 999px;
+        }
+        input[type=range]::-webkit-slider-thumb {
+            height: 22px;
+            width: 22px;
+            border-radius: 50%;
+            background: #FFFFFF;
+            cursor: pointer;
+            -webkit-appearance: none;
+            margin-top: -7px;
+            box-shadow: 0 0 14px rgba(37, 99, 235, 0.75);
+            border: 3px solid #2563EB;
+        }
+    </style>
+</head>
+<body class="antialiased selection:bg-laju-pink selection:text-white">
+
+    <!-- Top Brand Accent Strip -->
+    <div class="h-1 w-full brand-bar-border"></div>
+
+    <!-- ================================================================= -->
+    <!-- PUBLIC WEBSITE VIEW (DEFAULT ROUTE)                               -->
+    <!-- ================================================================= -->
+    <div id="public-app-view">
+
+        <!-- 1. ULTRA-CLEAN NAVBAR (h-16, NO ADMIN BUTTON ON PUBLIC HOME) -->
+        <header class="sticky top-0 z-40 glass-nav border-b border-white/10">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between gap-4">
+                <!-- Left: Crisp Official Laju Digital Tilted Card SVG + Stacked Typography -->
+                <a href="#" class="flex items-center gap-3 shrink-0 group focus:outline-none" aria-label="Laju Digital">
+                    <svg class="w-10 h-8 transition-transform duration-200 group-hover:scale-105 shrink-0" viewBox="0 0 110 86" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <g transform="translate(55 43) rotate(-9) translate(-46 -33)">
+                            <rect x="0" y="0" width="92" height="66" rx="14" fill="#FFFFFF"/>
+                            <rect x="12" y="13" width="21" height="14" rx="4" fill="#0B1930"/>
+                            <rect x="39" y="37" width="11.5" height="19" rx="5.75" fill="#2563EB"/>
+                            <rect x="55.5" y="25" width="11.5" height="31" rx="5.75" fill="#FF2E7E"/>
+                            <rect x="72" y="13" width="11.5" height="43" rx="5.75" fill="#FFB800"/>
+                        </g>
+                    </svg>
+                    <div class="flex flex-col justify-center leading-none">
+                        <span class="font-extrabold text-lg tracking-tight text-white">LAJU</span>
+                        <span class="text-[9px] font-bold text-[#3B82F6] tracking-[0.32em] uppercase mt-0.5">DIGITAL</span>
+                    </div>
+                </a>
+
+                <!-- Center: 4 Clean Navigation Links -->
+                <nav class="hidden md:flex items-center gap-8 text-xs lg:text-sm font-semibold text-slate-300">
+                    <a href="#katalog-shopee" class="hover:text-white transition-colors">Katalog</a>
+                    <a href="#sewa-kartu" class="hover:text-white transition-colors">Sewa &amp; Kartu</a>
+                    <a href="#kalkulator" class="hover:text-white transition-colors">Kalkulator</a>
+                    <a href="#faq" class="hover:text-white transition-colors">FAQ</a>
+                </nav>
+
+                <!-- Right: ONLY 2 Action Buttons (Shopee Store & Konsultasi WA) -->
+                <div class="flex items-center gap-2.5 shrink-0">
+                    <button onclick="openShopeeModal('Etalase Resmi 21 Produk — Shopee Official Laju Digital')" class="h-9 px-3.5 rounded-xl bg-[#EE4D2D] hover:bg-[#d73f20] text-white font-bold text-xs inline-flex items-center gap-1.5 transition-all shadow-sm">
+                        <svg class="w-3.5 h-3.5 fill-current shrink-0" viewBox="0 0 24 24"><path d="M19 6h-2c0-2.76-2.24-5-5-5S7 3.24 7 6H5c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2zm-7-3c1.66 0 3 1.34 3 3H9c0-1.66 1.34-3 3-3zm7 17H5V8h14v12zm-7-8c-1.66 0-3-1.34-3-3H7c0 2.76 2.24 5 5 5s5-2.24 5-5h-2c0 1.66-1.34 3-3 3z"/></svg>
+                        <span>Shopee Store</span>
+                    </button>
+
+                    <button onclick="openWaModal('Konsultasi Infrastruktur Meta Ads & Sewa Kartu Debit')" class="h-9 px-3.5 rounded-xl bg-emerald-500 hover:bg-emerald-600 text-laju-navyDark font-extrabold text-xs inline-flex items-center gap-1.5 transition-all shadow-sm">
+                        <svg class="w-3.5 h-3.5 fill-current shrink-0" viewBox="0 0 24 24"><path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766.001-3.187-2.575-5.77-5.764-5.771zm3.392 8.244c-.144.405-.837.774-1.17.824-.299.045-.677.063-1.092-.069-.252-.08-.575-.187-.988-.365-1.739-.751-2.874-2.502-2.961-2.617-.087-.116-.708-.94-.708-1.793s.448-1.273.607-1.446c.159-.173.346-.217.462-.217l.332.006c.106.005.249-.04.39.298.144.347.491 1.2.534 1.287.043.087.072.188.014.304-.058.116-.087.188-.173.289l-.26.304c-.087.086-.177.18-.076.354.101.174.449.741.964 1.201.662.591 1.221.774 1.394.86s.274.072.376-.043c.101-.116.433-.506.549-.68.116-.173.231-.145.39-.087s1.011.477 1.184.564.289.13.332.202c.045.072.045.419-.1.824zm-3.423-14.416c-6.627 0-12 5.373-12 12 0 2.625.846 5.059 2.284 7.033l-1.492 5.447 5.601-1.469c1.908 1.258 4.191 1.989 6.607 1.989 6.627 0 12-5.373 12-12s-5.373-12-12-12z"/></svg>
+                        <span>Konsultasi WA</span>
+                    </button>
+
+                    <button id="mobile-menu-btn" class="md:hidden h-9 w-9 inline-flex items-center justify-center rounded-xl bg-white/5 text-slate-200 border border-white/10" aria-label="Menu">
+                        <i data-lucide="menu" class="w-4 h-4"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Mobile Menu Dropdown -->
+            <div id="mobile-menu" class="hidden md:hidden border-t border-white/10 bg-laju-navyDark px-4 py-3 space-y-1.5">
+                <a href="#katalog-shopee" class="block px-3 py-2 rounded-lg text-xs font-semibold text-slate-200 hover:bg-white/5">Katalog (21 Produk)</a>
+                <a href="#sewa-kartu" class="block px-3 py-2 rounded-lg text-xs font-semibold text-slate-200 hover:bg-white/5">Sewa &amp; Kartu</a>
+                <a href="#kalkulator" class="block px-3 py-2 rounded-lg text-xs font-semibold text-slate-200 hover:bg-white/5">Kalkulator Top-Up</a>
+                <a href="#faq" class="block px-3 py-2 rounded-lg text-xs font-semibold text-slate-200 hover:bg-white/5">FAQ</a>
+            </div>
+        </header>
+
+        <!-- 2. COMPACT, SYMMETRICAL HERO SECTION (NO "BULK" WORDING) -->
+        <section class="relative py-12 lg:py-20 bg-grid-pattern border-b border-white/10 overflow-hidden">
+            <div class="absolute -top-24 left-1/4 w-96 h-96 bg-laju-blue/20 rounded-full blur-3xl pointer-events-none"></div>
+            <div class="absolute bottom-0 right-1/4 w-80 h-80 bg-laju-pink/15 rounded-full blur-3xl pointer-events-none"></div>
+
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+                <div class="grid lg:grid-cols-12 gap-10 lg:gap-12 items-center">
+                    
+                    <!-- Left Column (7 Cols) -->
+                    <div class="lg:col-span-7 space-y-6">
+                        <div class="inline-flex items-center gap-2.5 px-3.5 py-1.5 rounded-full bg-white/5 border border-white/10 text-[11px] font-bold tracking-wider uppercase text-slate-200">
+                            <span class="flex items-center gap-1">
+                                <span class="w-2 h-2 rounded-full bg-laju-blue"></span>
+                                <span class="w-2 h-2 rounded-full bg-laju-pink"></span>
+                                <span class="w-2 h-2 rounded-full bg-laju-amber"></span>
+                            </span>
+                            <span>SOLUSI AKUN IKLAN SIAP SCALE &amp; STABIL</span>
+                        </div>
+
+                        <h1 class="text-3xl sm:text-5xl lg:text-[50px] font-extrabold tracking-tight text-white leading-[1.13]">
+                            Solusi Akun &amp; Pembayaran Meta Ads <span class="brand-gradient-text">Siap Scale.</span>
+                        </h1>
+
+                        <p class="text-sm sm:text-base text-slate-300 max-w-2xl leading-relaxed">
+                            Miliki langsung aset <strong class="text-white">Akun Personal, BM Whitelist, BM Verified Resmi, dan Fanpage Tua</strong> melalui Shopee Official Store. Tersedia pula layanan <strong class="text-white">Sewa Akun Whitelist No Limit &amp; Kartu Debit Laju Pay</strong> dengan <em>fee top-up</em> mulai 3% serta bonus akun gratis setiap kelipatan Rp 200 Juta.
+                        </p>
+
+                        <!-- Two Well-Proportioned CTA Buttons -->
+                        <div class="flex flex-wrap items-center gap-3 pt-1">
+                            <a href="#katalog-shopee" class="h-12 px-6 rounded-xl bg-laju-blue hover:bg-blue-600 text-white font-extrabold text-xs sm:text-sm inline-flex items-center justify-center gap-2 shadow-lg shadow-blue-600/25 transition-all">
+                                <span>Lihat 21 Katalog Produk</span>
+                                <i data-lucide="arrow-down-right" class="w-4 h-4"></i>
+                            </a>
+                            <button onclick="openWaModal('Halo Admin Laju Digital, saya ingin konsultasi Katalog Akun Meta Ads / Sewa Akun Whitelist & Kartu Debit.')" class="h-12 px-6 rounded-xl bg-emerald-500 hover:bg-emerald-600 text-laju-navyDark font-extrabold text-xs sm:text-sm inline-flex items-center justify-center gap-2 shadow-lg shadow-emerald-500/20 transition-all">
+                                <svg class="w-4 h-4 fill-current shrink-0" viewBox="0 0 24 24"><path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766.001-3.187-2.575-5.77-5.764-5.771zm3.392 8.244c-.144.405-.837.774-1.17.824-.299.045-.677.063-1.092-.069-.252-.08-.575-.187-.988-.365-1.739-.751-2.874-2.502-2.961-2.617-.087-.116-.708-.94-.708-1.793s.448-1.273.607-1.446c.159-.173.346-.217.462-.217l.332.006c.106.005.249-.04.39.298.144.347.491 1.2.534 1.287.043.087.072.188.014.304-.058.116-.087.188-.173.289l-.26.304c-.087.086-.177.18-.076.354.101.174.449.741.964 1.201.662.591 1.221.774 1.394.86s.274.072.376-.043c.101-.116.433-.506.549-.68.116-.173.231-.145.39-.087s1.011.477 1.184.564.289.13.332.202c.045.072.045.419-.1.824zm-3.423-14.416c-6.627 0-12 5.373-12 12 0 2.625.846 5.059 2.284 7.033l-1.492 5.447 5.601-1.469c1.908 1.258 4.191 1.989 6.607 1.989 6.627 0 12-5.373 12-12s-5.373-12-12-12z"/></svg>
+                                <span>Konsultasi via WhatsApp</span>
+                            </button>
+                        </div>
+
+                        <!-- 3 Clean Metric Pills -->
+                        <div class="pt-4 border-t border-white/10 grid grid-cols-3 gap-3 max-w-xl">
+                            <div class="px-3.5 py-2.5 rounded-xl bg-white/[0.03] border border-white/10">
+                                <span class="text-[11px] text-slate-400 block">Katalog Shopee</span>
+                                <span class="text-xs sm:text-sm font-extrabold text-white mt-0.5 block">21 Aset Terkurasi</span>
+                            </div>
+                            <div class="px-3.5 py-2.5 rounded-xl bg-white/[0.03] border border-white/10">
+                                <span class="text-[11px] text-slate-400 block">Skema Top-Up</span>
+                                <span class="text-xs sm:text-sm font-extrabold text-laju-amber mt-0.5 block">Fee 5% → 3%</span>
+                            </div>
+                            <div class="px-3.5 py-2.5 rounded-xl bg-white/[0.03] border border-white/10">
+                                <span class="text-[11px] text-slate-400 block">Proteksi Aset</span>
+                                <span class="text-xs sm:text-sm font-extrabold text-emerald-400 mt-0.5 block">Garansi Resmi</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Right Column (5 Cols): Interactive Laju Pay Virtual Card (NO "BULK" WORDING) -->
+                    <div class="lg:col-span-5">
+                        <div class="surface-card rounded-3xl p-5 sm:p-6 shadow-2xl">
+                            <!-- Top Control Bar: Label + 3 Tier Switcher Pills (Akun WL | Full Package | Multi-Akun) -->
+                            <div class="flex items-center justify-between gap-2 mb-4">
+                                <span class="text-xs font-bold text-slate-300">Simulasi Kartu &amp; Paket Sewa</span>
+                                <div class="inline-flex p-1 rounded-xl bg-laju-navyDark border border-white/10">
+                                    <button onclick="switchMetaTier('starter')" id="tab-card-starter" class="px-2.5 py-1 rounded-lg text-[11px] font-extrabold bg-laju-blue text-white transition-all">Akun WL</button>
+                                    <button onclick="switchMetaTier('bmpro')" id="tab-card-bmpro" class="px-2.5 py-1 rounded-lg text-[11px] font-bold text-slate-400 hover:text-white transition-all">Full Package</button>
+                                    <button onclick="switchMetaTier('whales')" id="tab-card-whales" class="px-2.5 py-1 rounded-lg text-[11px] font-bold text-slate-400 hover:text-white transition-all">Multi-Akun</button>
+                                </div>
+                            </div>
+
+                            <!-- Credit-Card Aspect Ratio Container -->
+                            <div id="virtual-card-box" class="rounded-2xl p-6 bg-gradient-to-br from-[#173464] via-[#0B1930] to-[#060F1E] border border-white/20 shadow-xl relative overflow-hidden">
+                                <!-- Card Top Row: Official SVG Icon + LAJU PAY on Left, Status Pill on Right -->
+                                <div class="flex items-center justify-between mb-6 relative z-10">
+                                    <div class="flex items-center gap-2.5">
+                                        <svg class="w-9 h-7 shrink-0" viewBox="0 0 92 66" fill="none">
+                                            <g transform="translate(46 33) rotate(-9) translate(-42 -29)">
+                                                <rect width="84" height="58" rx="13" fill="#FFFFFF"/>
+                                                <rect x="11" y="11" width="18" height="12" rx="3.5" fill="#0B1930"/>
+                                                <rect x="35" y="33" width="10" height="17" rx="5" fill="#2563EB"/>
+                                                <rect x="50" y="22" width="10" height="28" rx="5" fill="#FF2E7E"/>
+                                                <rect x="65" y="11" width="10" height="39" rx="5" fill="#FFB800"/>
+                                            </g>
+                                        </svg>
+                                        <div class="leading-none">
+                                            <span class="font-extrabold tracking-tight text-white text-sm block">LAJU PAY</span>
+                                            <span class="text-[9px] font-mono text-blue-300 uppercase tracking-widest">META BILLING CARD</span>
+                                        </div>
+                                    </div>
+                                    <span id="card-platform-badge" class="px-2.5 py-1 rounded-full text-[10px] font-mono font-bold bg-white/10 text-white border border-white/15">
+                                        AKUN WL NO LIMIT
+                                    </span>
+                                </div>
+
+                                <!-- Card Middle Row: Chip + Number -->
+                                <div class="mb-6 relative z-10">
+                                    <div class="flex items-center justify-between mb-3">
+                                        <div class="w-10 h-7 rounded-md bg-gradient-to-br from-amber-200 to-amber-400 border border-amber-100/60 flex items-center justify-center">
+                                            <div class="w-5 h-3.5 rounded-sm border border-laju-navy/30"></div>
+                                        </div>
+                                        <span id="card-warranty-badge" class="text-[10px] font-mono font-semibold text-emerald-300 bg-emerald-500/15 border border-emerald-500/30 px-2 py-0.5 rounded">
+                                            GARANSI 2X
+                                        </span>
+                                    </div>
+                                    <div id="card-number-display" class="font-mono text-lg sm:text-xl tracking-widest text-white font-bold">
+                                        5379 •••• •••• 8821
+                                    </div>
+                                </div>
+
+                                <!-- Card Bottom Row: Strictly PEMEGANG KARTU (NAMA ANDA) on Left & BIAYA PEMBUKAAN with Aligned Mini Bar Icon on Right -->
+                                <div class="pt-3.5 border-t border-white/15 flex items-end justify-between gap-3 relative z-10">
+                                    <div class="min-w-0">
+                                        <span class="text-[10px] font-semibold uppercase tracking-wider text-slate-400 block">PEMEGANG KARTU</span>
+                                        <span id="card-holder-display" class="text-sm font-extrabold text-white truncate block mt-0.5">NAMA ANDA</span>
+                                    </div>
+                                    <div class="text-right shrink-0">
+                                        <div class="inline-flex items-center justify-end gap-1.5">
+                                            <span class="inline-flex items-end gap-0.5" aria-hidden="true">
+                                                <span class="w-1 h-2 rounded-full bg-[#2563EB]"></span>
+                                                <span class="w-1 h-3 rounded-full bg-[#FF2E7E]"></span>
+                                                <span class="w-1 h-3.5 rounded-full bg-[#FFB800]"></span>
+                                            </span>
+                                            <span class="text-[10px] font-semibold uppercase tracking-wider text-slate-300">BIAYA PEMBUKAAN</span>
+                                        </div>
+                                        <span id="card-limit-display" class="font-mono font-extrabold text-laju-amber text-sm block mt-0.5">Rp 1.499.000 / akun</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Live Editable Input for NAMA ANDA -->
+                            <div class="mt-3.5 flex items-center gap-2 bg-laju-navyDark px-3 py-2 rounded-xl border border-white/10">
+                                <i data-lucide="user" class="w-4 h-4 text-laju-amber shrink-0"></i>
+                                <input type="text" id="custom-card-name" maxlength="22" placeholder="Ketik Nama Anda untuk pratinjau kartu..." class="w-full bg-transparent text-xs text-white placeholder-slate-400 focus:outline-none">
+                                <span id="card-fee-display" class="text-[10px] font-mono font-bold text-emerald-400 shrink-0 px-2 py-0.5 bg-emerald-500/10 rounded border border-emerald-500/20">Fee 5%</span>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- 3. DIRECT CORE SOLUTIONS (NO "DIVISI 1" OR "DIVISI 2" LABELS) -->
+        <section class="py-16 lg:py-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-2xl mx-auto mb-12">
+                <span class="text-xs font-extrabold uppercase tracking-widest text-laju-blue">Solusi Infrastruktur Meta Ads</span>
+                <h2 class="text-2xl sm:text-3xl font-extrabold text-white mt-1.5">Pilih Skema Infrastruktur Sesuai Kebutuhan</h2>
+                <p class="text-xs sm:text-sm text-slate-300 mt-2">
+                    Tersedia opsi beli putus dengan hak milik penuh melalui Shopee Official maupun sistem sewa akun <em>whitelist</em> terintegrasi kartu debit Laju Pay.
+                </p>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-6 items-stretch">
+                <!-- Card 1: Jual Putus Infrastruktur Meta Ads -->
+                <div class="surface-card rounded-3xl p-7 flex flex-col justify-between border-t-4 border-t-[#EE4D2D]">
+                    <div>
+                        <div class="flex items-center justify-between gap-2 mb-5">
+                            <span class="px-3 py-1 rounded-full text-[11px] font-extrabold bg-[#EE4D2D]/15 text-orange-400 border border-[#EE4D2D]/30">
+                                Kepemilikan Penuh • Shopee Official
+                            </span>
+                            <span class="text-xs font-mono font-bold text-slate-400">21 Produk Ready</span>
+                        </div>
+                        <h3 class="text-xl font-extrabold text-white">Jual Putus Infrastruktur Meta Ads</h3>
+                        <p class="text-xs sm:text-sm text-slate-300 mt-2 leading-relaxed">
+                            Akuisisi aset akun periklanan digital secara beli putus untuk menjadi hak milik penuh tim atau bisnis Anda, dapat di-<em>checkout</em> instan via Shopee Official Store.
+                        </p>
+                        <ul class="mt-5 space-y-2.5 text-xs sm:text-sm text-slate-200">
+                            <li class="flex items-start gap-2.5"><i data-lucide="check-circle-2" class="w-4 h-4 text-orange-400 shrink-0 mt-0.5"></i> <span><strong>Akun Personal &amp; Ad Account WL:</strong> Pilihan limit $50, $250, hingga <em>Instant No Limit</em>.</span></li>
+                            <li class="flex items-start gap-2.5"><i data-lucide="check-circle-2" class="w-4 h-4 text-orange-400 shrink-0 mt-0.5"></i> <span><strong>BM Reinstated &amp; BM Whitelist:</strong> Kapasitas 1, 5, hingga 10 akun iklan + <em>Pixel Vault</em>.</span></li>
+                            <li class="flex items-start gap-2.5"><i data-lucide="check-circle-2" class="w-4 h-4 text-orange-400 shrink-0 mt-0.5"></i> <span><strong>BM Verified Resmi:</strong> Terverifikasi dokumen perusahaan untuk otoritas tertinggi.</span></li>
+                            <li class="flex items-start gap-2.5"><i data-lucide="check-circle-2" class="w-4 h-4 text-orange-400 shrink-0 mt-0.5"></i> <span><strong>Aged Fanpage &amp; TikTok BM:</strong> Halaman lawas (2015–2020), <em>Ready Live</em>, &amp; TikTok Verified.</span></li>
+                        </ul>
+                    </div>
+                    <div class="mt-7 pt-4 border-t border-white/10 flex items-center justify-between">
+                        <span class="text-xs text-slate-400">Serah terima aset penuh via Shopee &amp; WA</span>
+                        <a href="#katalog-shopee" class="text-xs sm:text-sm font-extrabold text-orange-400 hover:text-orange-300 inline-flex items-center gap-1">
+                            <span>Lihat 21 Katalog</span>
+                            <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Card 2: Sewa Akun Whitelist No Limit & Kartu Debit -->
+                <div class="surface-card rounded-3xl p-7 flex flex-col justify-between border-t-4 border-t-laju-blue">
+                    <div>
+                        <div class="flex items-center justify-between gap-2 mb-5">
+                            <span class="px-3 py-1 rounded-full text-[11px] font-extrabold bg-laju-blue/20 text-blue-300 border border-laju-blue/40">
+                                Laju Pay • Fee Top-Up Mulai 3%
+                            </span>
+                            <span class="text-xs font-mono font-bold text-laju-amber">Garansi Resmi</span>
+                        </div>
+                        <h3 class="text-xl font-extrabold text-white">Sewa Akun Whitelist No Limit &amp; Kartu Debit</h3>
+                        <p class="text-xs sm:text-sm text-slate-300 mt-2 leading-relaxed">
+                            Sistem sewa akun siap gas lengkap dengan Kartu Debit khusus <em>Meta Billing</em> yang dikelola penuh oleh tim kami, bebas pusing gagal bayar atau kartu ditolak.
+                        </p>
+                        <ul class="mt-5 space-y-2.5 text-xs sm:text-sm text-slate-200">
+                            <li class="flex items-start gap-2.5"><i data-lucide="check-circle-2" class="w-4 h-4 text-blue-400 shrink-0 mt-0.5"></i> <span><strong>Garansi Penggantian Resmi:</strong> 1x garansi Personal/BM &amp; 2x garansi Akun WL No Limit.</span></li>
+                            <li class="flex items-start gap-2.5"><i data-lucide="check-circle-2" class="w-4 h-4 text-blue-400 shrink-0 mt-0.5"></i> <span><strong>Skema Fee Bulanan Efisien:</strong> Standar 5%, turun ke 4%–3% saat <em>spend</em> ≥ Rp 1 Miliar/bulan.</span></li>
+                            <li class="flex items-start gap-2.5"><i data-lucide="check-circle-2" class="w-4 h-4 text-blue-400 shrink-0 mt-0.5"></i> <span><strong>Bonus Loyalty Top-Up:</strong> Gratis 1 Akun WL No Limit setiap kelipatan <em>top-up</em> Rp 200 Juta.</span></li>
+                            <li class="flex items-start gap-2.5"><i data-lucide="check-circle-2" class="w-4 h-4 text-blue-400 shrink-0 mt-0.5"></i> <span><strong>Transparansi &amp; Proteksi Saldo:</strong> Update saldo 08.00 &amp; 22.00 WIB, mutasi kartu, &amp; saldo aman.</span></li>
+                        </ul>
+                    </div>
+                    <div class="mt-7 pt-4 border-t border-white/10 flex items-center justify-between">
+                        <span class="text-xs text-slate-400">Didampingi jam kerja 08.00 – 22.00 WIB</span>
+                        <a href="#sewa-kartu" class="text-xs sm:text-sm font-extrabold text-blue-400 hover:text-blue-300 inline-flex items-center gap-1">
+                            <span>Lihat Paket Sewa</span>
+                            <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 4. 21-PRODUCT CATALOG GRID (3x7 SYMMETRICAL GRID, ALL PRICES +RP 200.000) -->
+        <section id="katalog-shopee" class="py-16 lg:py-20 bg-laju-navyDark/70 border-y border-white/10">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="mb-8">
+                    <span class="text-xs font-extrabold uppercase tracking-widest text-orange-400">Jual Putus Infrastruktur • Shopee Official &amp; Direct Order</span>
+                    <h2 class="text-2xl sm:text-3xl font-extrabold text-white mt-1">21 Katalog Aset Meta &amp; TikTok Ads Siap Scale</h2>
+                </div>
+
+                <!-- Single-Row Filter Bar + Search Input -->
+                <div class="flex flex-col lg:flex-row items-stretch lg:items-center justify-between gap-3 mb-8">
+                    <div class="flex flex-wrap items-center gap-1.5">
+                        <button onclick="setShopeeCategory('all')" id="cat-tab-all" class="px-3.5 py-2 rounded-xl text-xs font-extrabold bg-[#EE4D2D] text-white transition-all">
+                            Semua (21)
+                        </button>
+                        <button onclick="setShopeeCategory('personal-wl')" id="cat-tab-personal-wl" class="px-3.5 py-2 rounded-xl text-xs font-bold bg-laju-navy text-slate-300 hover:text-white border border-white/10 transition-all">
+                            Akun Personal &amp; WL (6)
+                        </button>
+                        <button onclick="setShopeeCategory('bm-wl')" id="cat-tab-bm-wl" class="px-3.5 py-2 rounded-xl text-xs font-bold bg-laju-navy text-slate-300 hover:text-white border border-white/10 transition-all">
+                            BM Reinstated &amp; Whitelist (7)
+                        </button>
+                        <button onclick="setShopeeCategory('bm-verified')" id="cat-tab-bm-verified" class="px-3.5 py-2 rounded-xl text-xs font-bold bg-laju-navy text-slate-300 hover:text-white border border-white/10 transition-all">
+                            BM Verified Resmi (4)
+                        </button>
+                        <button onclick="setShopeeCategory('page-tiktok')" id="cat-tab-page-tiktok" class="px-3.5 py-2 rounded-xl text-xs font-bold bg-laju-navy text-slate-300 hover:text-white border border-white/10 transition-all">
+                            Fanpage &amp; TikTok (4)
+                        </button>
+                    </div>
+
+                    <div class="relative w-full lg:w-72 shrink-0">
+                        <i data-lucide="search" class="w-4 h-4 text-slate-400 absolute left-3.5 top-1/2 -translate-y-1/2"></i>
+                        <input type="text" id="shopee-search" oninput="filterShopeeCatalog()" placeholder="Cari produk katalog..." class="w-full h-10 pl-9 pr-3.5 rounded-xl bg-laju-navy border border-white/15 text-xs text-white placeholder-slate-400 focus:outline-none focus:border-laju-blue">
+                    </div>
+                </div>
+
+                <!-- 3x7 Symmetrical Product Cards Grid -->
+                <div id="shopee-products-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 items-stretch">
+                    <!-- Populated dynamically via JS -->
+                </div>
+            </div>
+        </section>
+
+        <!-- 5. SEWA AKUN WHITELIST & KARTU DEBIT SECTION (NO "BULK" WORDING) -->
+        <section id="sewa-kartu" class="py-16 lg:py-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-2xl mx-auto mb-12">
+                <span class="text-xs font-extrabold uppercase tracking-widest text-laju-amber">Program Sewa Akun &amp; Kartu Debit Laju Pay</span>
+                <h2 class="text-2xl sm:text-3xl font-extrabold text-white mt-1.5">Paket Sewa Akun Whitelist &amp; Kartu Debit</h2>
+                <p class="text-xs sm:text-sm text-slate-300 mt-2">
+                    Biaya pembukaan dibayarkan di awal untuk aktivasi infrastruktur, dilengkapi garansi penggantian resmi dan jaminan pemindahan saldo 100%.
+                </p>
+            </div>
+
+            <!-- 3 Uniform Pricing Cards -->
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 items-stretch mb-10">
+                <!-- Card 1: Akun Iklan Whitelist No Limit Saja -->
+                <div class="surface-card surface-card-hover rounded-3xl p-7 flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center justify-between gap-2 mb-4">
+                            <div class="flex items-center gap-2">
+                                <svg class="w-7 h-5 shrink-0" viewBox="0 0 92 66" fill="none">
+                                    <g transform="translate(46 33) rotate(-9) translate(-42 -29)">
+                                        <rect width="84" height="58" rx="13" fill="#FFFFFF"/>
+                                        <rect x="11" y="11" width="18" height="12" rx="3.5" fill="#0B1930"/>
+                                        <rect x="35" y="33" width="10" height="17" rx="5" fill="#2563EB"/>
+                                        <rect x="50" y="22" width="10" height="28" rx="5" fill="#FF2E7E"/>
+                                        <rect x="65" y="11" width="10" height="39" rx="5" fill="#FFB800"/>
+                                    </g>
+                                </svg>
+                                <span class="text-xs font-mono font-bold uppercase text-blue-400">PAKET SEWA 01</span>
+                            </div>
+                            <span class="px-2.5 py-0.5 rounded-full text-[10px] font-bold bg-emerald-500/15 text-emerald-300 border border-emerald-500/30">Garansi 2x</span>
+                        </div>
+
+                        <h3 class="text-lg font-extrabold text-white">Akun Iklan Whitelist No Limit Saja</h3>
+                        <p class="text-xs text-slate-400 mt-1">Pembukaan &amp; aktivasi 1 unit Akun Iklan Whitelist No Limit siap gas.</p>
+
+                        <!-- Aligned Biaya Pembukaan Box -->
+                        <div class="my-5 p-4 rounded-2xl bg-laju-navyDark/90 border border-white/10 flex items-center justify-between">
+                            <div>
+                                <div class="flex items-center gap-1.5">
+                                    <span class="inline-flex items-end gap-0.5">
+                                        <span class="w-1 h-2 rounded-full bg-[#2563EB]"></span>
+                                        <span class="w-1 h-2.5 rounded-full bg-[#FF2E7E]"></span>
+                                        <span class="w-1 h-3.5 rounded-full bg-[#FFB800]"></span>
+                                    </span>
+                                    <span class="text-[10px] font-bold uppercase tracking-wider text-slate-300">Biaya Pembukaan</span>
+                                </div>
+                                <span class="text-xs text-slate-500 line-through font-mono block mt-0.5">Rp 1.299.000</span>
+                            </div>
+                            <div class="text-right">
+                                <span class="text-xl font-extrabold font-mono text-white">Rp 1.499.000</span>
+                                <span class="text-[10px] text-slate-400 block">/ akun</span>
+                            </div>
+                        </div>
+
+                        <ul class="space-y-2.5 text-xs text-slate-200">
+                            <li class="flex items-start gap-2"><i data-lucide="check" class="w-4 h-4 text-blue-400 shrink-0 mt-0.5"></i> <span><strong>2x Garansi Penggantian</strong> Akun WL No Limit</span></li>
+                            <li class="flex items-start gap-2"><i data-lucide="check" class="w-4 h-4 text-blue-400 shrink-0 mt-0.5"></i> <span>Penyiapan cepat maksimal <strong>1 x 24 jam</strong></span></li>
+                            <li class="flex items-start gap-2"><i data-lucide="check" class="w-4 h-4 text-blue-400 shrink-0 mt-0.5"></i> <span>Top-up saldo iklan mudah (Fee standar 5%)</span></li>
+                            <li class="flex items-start gap-2"><i data-lucide="check" class="w-4 h-4 text-blue-400 shrink-0 mt-0.5"></i> <span>Saldo dijamin aman &amp; bisa dipindah antar akun</span></li>
+                        </ul>
+                    </div>
+
+                    <button onclick="openWaModal('Sewa Paket 01: Akun Iklan Whitelist No Limit Saja (Rp 1.499.000 / akun)')" class="mt-6 h-11 w-full rounded-xl bg-emerald-500 hover:bg-emerald-600 text-laju-navyDark font-extrabold text-xs inline-flex items-center justify-center gap-2 transition-all">
+                        <span>Sewa Paket 01 via WhatsApp</span>
+                        <i data-lucide="arrow-up-right" class="w-4 h-4"></i>
+                    </button>
+                </div>
+
+                <!-- Card 2: Full Package All-in-One (Featured) -->
+                <div class="surface-card surface-card-hover rounded-3xl p-7 flex flex-col justify-between border-2 border-laju-pink relative">
+                    <span class="absolute -top-3 right-5 px-3 py-0.5 rounded-full bg-gradient-to-r from-laju-pink to-laju-amber text-laju-navyDark font-extrabold text-[10px] uppercase tracking-wider">
+                        Paling Lengkap
+                    </span>
+                    <div>
+                        <div class="flex items-center justify-between gap-2 mb-4">
+                            <div class="flex items-center gap-2">
+                                <svg class="w-7 h-5 shrink-0" viewBox="0 0 92 66" fill="none">
+                                    <g transform="translate(46 33) rotate(-9) translate(-42 -29)">
+                                        <rect width="84" height="58" rx="13" fill="#FFFFFF"/>
+                                        <rect x="11" y="11" width="18" height="12" rx="3.5" fill="#0B1930"/>
+                                        <rect x="35" y="33" width="10" height="17" rx="5" fill="#2563EB"/>
+                                        <rect x="50" y="22" width="10" height="28" rx="5" fill="#FF2E7E"/>
+                                        <rect x="65" y="11" width="10" height="39" rx="5" fill="#FFB800"/>
+                                    </g>
+                                </svg>
+                                <span class="text-xs font-mono font-bold uppercase text-laju-amber">PAKET SEWA 02</span>
+                            </div>
+                            <span class="px-2.5 py-0.5 rounded-full text-[10px] font-bold bg-laju-pink/20 text-pink-300 border border-laju-pink/40">All-in-One + CC</span>
+                        </div>
+
+                        <h3 class="text-lg font-extrabold text-white">Full Package (Personal + BM + WL + FP + CC)</h3>
+                        <p class="text-xs text-slate-300 mt-1">Paket ekosistem lengkap dengan Kartu Debit/CC siap pakai.</p>
+
+                        <div class="my-5 p-4 rounded-2xl bg-laju-navyDark/95 border border-laju-pink/40 flex items-center justify-between">
+                            <div>
+                                <div class="flex items-center gap-1.5">
+                                    <span class="inline-flex items-end gap-0.5">
+                                        <span class="w-1 h-2 rounded-full bg-[#2563EB]"></span>
+                                        <span class="w-1 h-2.5 rounded-full bg-[#FF2E7E]"></span>
+                                        <span class="w-1 h-3.5 rounded-full bg-[#FFB800]"></span>
+                                    </span>
+                                    <span class="text-[10px] font-bold uppercase tracking-wider text-slate-200">Biaya Pembukaan</span>
+                                </div>
+                                <span class="text-xs text-slate-400 line-through font-mono block mt-0.5">Rp 2.999.000</span>
+                            </div>
+                            <div class="text-right">
+                                <span class="text-xl font-extrabold font-mono text-laju-amber">Rp 3.199.000</span>
+                                <span class="text-[10px] text-slate-300 block">/ paket</span>
+                            </div>
+                        </div>
+
+                        <ul class="space-y-2.5 text-xs text-white">
+                            <li class="flex items-start gap-2"><i data-lucide="check" class="w-4 h-4 text-laju-amber shrink-0 mt-0.5"></i> <span>Lengkap <strong>Personal + BM + Akun WL + FP + CC</strong></span></li>
+                            <li class="flex items-start gap-2"><i data-lucide="check" class="w-4 h-4 text-laju-amber shrink-0 mt-0.5"></i> <span><strong>1x Garansi</strong> Akun Personal &amp; Business Manager</span></li>
+                            <li class="flex items-start gap-2"><i data-lucide="check" class="w-4 h-4 text-laju-amber shrink-0 mt-0.5"></i> <span><strong>2x Garansi</strong> Akun Iklan Whitelist No Limit</span></li>
+                            <li class="flex items-start gap-2"><i data-lucide="check" class="w-4 h-4 text-laju-amber shrink-0 mt-0.5"></i> <span>Bebas request bukti mutasi kartu kapan saja</span></li>
+                        </ul>
+                    </div>
+
+                    <button onclick="openWaModal('Sewa Paket 02 (Full Package): Personal + BM + Akun WL + FP + CC (Rp 3.199.000)')" class="mt-6 h-11 w-full rounded-xl bg-gradient-to-r from-laju-pink to-laju-amber text-laju-navyDark font-extrabold text-xs inline-flex items-center justify-center gap-2 transition-all shadow-md">
+                        <span>Ambil Full Package via WA</span>
+                        <i data-lucide="arrow-up-right" class="w-4 h-4"></i>
+                    </button>
+                </div>
+
+                <!-- Card 3: Paket Ekspansi Multi-Akun (Agensi & Scaling) — NO "BULK" WORDING -->
+                <div class="surface-card surface-card-hover rounded-3xl p-7 flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center justify-between gap-2 mb-4">
+                            <div class="flex items-center gap-2">
+                                <svg class="w-7 h-5 shrink-0" viewBox="0 0 92 66" fill="none">
+                                    <g transform="translate(46 33) rotate(-9) translate(-42 -29)">
+                                        <rect width="84" height="58" rx="13" fill="#FFFFFF"/>
+                                        <rect x="11" y="11" width="18" height="12" rx="3.5" fill="#0B1930"/>
+                                        <rect x="35" y="33" width="10" height="17" rx="5" fill="#2563EB"/>
+                                        <rect x="50" y="22" width="10" height="28" rx="5" fill="#FF2E7E"/>
+                                        <rect x="65" y="11" width="10" height="39" rx="5" fill="#FFB800"/>
+                                    </g>
+                                </svg>
+                                <span class="text-xs font-mono font-bold uppercase text-laju-amber">PAKET SEWA 03</span>
+                            </div>
+                            <span class="px-2.5 py-0.5 rounded-full text-[10px] font-bold bg-laju-amber/15 text-laju-amber border border-laju-amber/30">Multi-Akun &amp; Agensi</span>
+                        </div>
+
+                        <h3 class="text-lg font-extrabold text-white">Paket Ekspansi Multi-Akun (Agensi &amp; Scaling)</h3>
+                        <p class="text-xs text-slate-400 mt-1">Pembukaan banyak akun sekaligus untuk agensi &amp; volume besar (Reguler flat Rp 1.199.000/akun).</p>
+
+                        <div class="my-5 p-4 rounded-2xl bg-laju-navyDark/90 border border-white/10 flex items-center justify-between">
+                            <div>
+                                <div class="flex items-center gap-1.5">
+                                    <span class="inline-flex items-end gap-0.5">
+                                        <span class="w-1 h-2 rounded-full bg-[#2563EB]"></span>
+                                        <span class="w-1 h-2.5 rounded-full bg-[#FF2E7E]"></span>
+                                        <span class="w-1 h-3.5 rounded-full bg-[#FFB800]"></span>
+                                    </span>
+                                    <span class="text-[10px] font-bold uppercase tracking-wider text-slate-300">Biaya Pembukaan</span>
+                                </div>
+                                <span class="text-xs text-slate-500 line-through font-mono block mt-0.5">Rp 799.000</span>
+                            </div>
+                            <div class="text-right">
+                                <span class="text-xl font-extrabold font-mono text-white">Rp 999.000</span>
+                                <span class="text-[10px] text-slate-400 block">/ akun ekspansi</span>
+                            </div>
+                        </div>
+
+                        <ul class="space-y-2.5 text-xs text-slate-200">
+                            <li class="flex items-start gap-2"><i data-lucide="check" class="w-4 h-4 text-laju-amber shrink-0 mt-0.5"></i> <span>Khusus <strong>Scaling Ads, Agency &amp; Volume Besar</strong></span></li>
+                            <li class="flex items-start gap-2"><i data-lucide="check" class="w-4 h-4 text-laju-amber shrink-0 mt-0.5"></i> <span>Dukungan penuh <em>maintenance</em> &amp; proses banding</span></li>
+                            <li class="flex items-start gap-2"><i data-lucide="check" class="w-4 h-4 text-laju-amber shrink-0 mt-0.5"></i> <span>Fee turun hingga 3% untuk <em>spend</em> ≥ Rp 1 Miliar/bln</span></li>
+                            <li class="flex items-start gap-2"><i data-lucide="check" class="w-4 h-4 text-laju-amber shrink-0 mt-0.5"></i> <span>Gratis 1 Akun WL tiap kelipatan top-up Rp 200 Juta</span></li>
+                        </ul>
+                    </div>
+
+                    <button onclick="openWaModal('Paket Ekspansi Multi-Akun / Agensi Scaling (Rp 999.000 - Rp 1.199.000 / akun)')" class="mt-6 h-11 w-full rounded-xl bg-white/10 hover:bg-emerald-500 text-white hover:text-laju-navyDark font-extrabold text-xs inline-flex items-center justify-center gap-2 transition-all border border-white/15">
+                        <span>Request Multi-Akun via WA</span>
+                        <i data-lucide="arrow-up-right" class="w-4 h-4"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Tidy 4-Column SOP & Operational Summary Grid -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+                <div class="surface-card rounded-2xl p-5">
+                    <div class="w-9 h-9 rounded-xl bg-laju-blue/20 text-blue-400 flex items-center justify-center mb-3">
+                        <i data-lucide="shield-check" class="w-4 h-4"></i>
+                    </div>
+                    <h4 class="text-sm font-extrabold text-white">1. Aktivasi 1x24 Jam &amp; Warming IP</h4>
+                    <p class="text-xs text-slate-300 mt-1.5 leading-relaxed">
+                        Akun disiapkan maks. <strong>1x24 jam</strong>. Wajib didiamkan <strong>12–24 jam</strong> setelah dikirim untuk adaptasi IP (jangan ubah IP/proxy agar awet).
+                    </p>
+                </div>
+
+                <div class="surface-card rounded-2xl p-5">
+                    <div class="w-9 h-9 rounded-xl bg-emerald-500/20 text-emerald-400 flex items-center justify-center mb-3">
+                        <i data-lucide="clock" class="w-4 h-4"></i>
+                    </div>
+                    <h4 class="text-sm font-extrabold text-white">2. Update Saldo &amp; Bukti Mutasi</h4>
+                    <p class="text-xs text-slate-300 mt-1.5 leading-relaxed">
+                        Update saldo rutin pukul <strong>08.00 &amp; 22.00 WIB</strong> (Senin–Minggu) atau sesuai request. Bebas minta bukti mutasi kartu kapan saja.
+                    </p>
+                </div>
+
+                <div class="surface-card rounded-2xl p-5">
+                    <div class="w-9 h-9 rounded-xl bg-laju-pink/20 text-laju-pink flex items-center justify-center mb-3">
+                        <i data-lucide="trending-down" class="w-4 h-4"></i>
+                    </div>
+                    <h4 class="text-sm font-extrabold text-white">3. Penurunan Fee Min. Spend 1M/Bln</h4>
+                    <p class="text-xs text-slate-300 mt-1.5 leading-relaxed">
+                        Fee standar <strong>5%</strong> turun ke <strong>4%–3%</strong> saat <em>spend</em> mencapai <strong>≥ Rp 1 Miliar di bulan berjalan</strong> (reset kembali ke 5% jika bulan depan &lt; 1M).
+                    </p>
+                </div>
+
+                <div class="surface-card rounded-2xl p-5">
+                    <div class="w-9 h-9 rounded-xl bg-laju-amber/20 text-laju-amber flex items-center justify-center mb-3">
+                        <i data-lucide="gift" class="w-4 h-4"></i>
+                    </div>
+                    <h4 class="text-sm font-extrabold text-white">4. Bonus Gratis Tiap Rp 200 Juta</h4>
+                    <p class="text-xs text-slate-300 mt-1.5 leading-relaxed">
+                        Setiap <em>top-up</em> <strong>Rp 200.000.000</strong> (berlaku kelipatan) otomatis mendapat <strong>GRATIS 1 Akun Iklan Whitelist No Limit</strong> (Garansi 2x).
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 6. INTERACTIVE TOP-UP & BONUS CALCULATOR (NO PUBLIC INVOICE BUTTON) -->
+        <section id="kalkulator" class="py-16 lg:py-20 bg-laju-navyDark/70 border-t border-white/10">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="surface-card rounded-3xl p-6 sm:p-10">
+                    <div class="grid lg:grid-cols-12 gap-8 items-center">
+                        
+                        <!-- Left Controls (7 Cols) -->
+                        <div class="lg:col-span-7 space-y-6">
+                            <div>
+                                <span class="text-xs font-extrabold uppercase tracking-widest text-laju-amber">Simulasi Transparan Laju Pay</span>
+                                <h2 class="text-2xl sm:text-3xl font-extrabold text-white mt-1">Kalkulator Top-Up, Fee Bulanan &amp; Bonus Akun</h2>
+                                <p class="text-xs sm:text-sm text-slate-300 mt-1">
+                                    Hitung estimasi transfer dan perolehan <strong>Bonus Gratis Akun Whitelist No Limit</strong> (setiap kelipatan Rp 200 Juta).
+                                </p>
+                            </div>
+
+                            <!-- Top-Up Slider & Number Input -->
+                            <div class="p-5 rounded-2xl bg-laju-navyDark border border-white/10 space-y-4">
+                                <div class="flex flex-wrap items-center justify-between gap-2">
+                                    <label for="budget-slider" class="text-xs font-bold text-slate-300">Nominal Top-Up Saldo Iklan:</label>
+                                    <div class="flex items-center gap-1.5 bg-laju-navy px-3 py-1.5 rounded-xl border border-laju-blue/50">
+                                        <span class="text-xs font-mono text-slate-400">Rp</span>
+                                        <input type="number" id="budget-number-input" value="200000000" min="1000000" max="1500000000" step="1000000" class="bg-transparent font-mono font-extrabold text-sm sm:text-base text-laju-amber w-36 focus:outline-none text-right">
+                                    </div>
+                                </div>
+                                <input type="range" id="budget-slider" min="1000000" max="1000000000" step="1000000" value="200000000" class="w-full">
+                                <div class="flex justify-between text-[10px] font-mono text-slate-400">
+                                    <span>Rp 1 Juta</span>
+                                    <span>Rp 200 Jt (1 Bonus)</span>
+                                    <span>Rp 600 Jt (3 Bonus)</span>
+                                    <span>Rp 1 Miliar (5 Bonus)</span>
+                                </div>
+                            </div>
+
+                            <!-- Monthly Spend Tier Toggle & Initial Package Select -->
+                            <div class="grid sm:grid-cols-2 gap-4">
+                                <div>
+                                    <label class="block text-xs font-bold text-slate-300 mb-1.5">Tier Akumulasi Spend Bulan Ini:</label>
+                                    <select id="calc-monthly-tier" onchange="updateCalculator()" class="w-full h-11 bg-laju-navyDark border border-white/15 rounded-xl px-3 text-xs font-bold text-white focus:outline-none focus:border-laju-blue">
+                                        <option value="0.05">&lt; Rp 1 Miliar [Fee Standar 5%]</option>
+                                        <option value="0.04">≥ Rp 1 Miliar [Fee Turun 4%]</option>
+                                        <option value="0.03">≥ Rp 2 Miliar VIP [Fee Terendah 3%]</option>
+                                    </select>
+                                </div>
+                                <div>
+                                    <label class="block text-xs font-bold text-slate-300 mb-1.5">Biaya Pembukaan Akun Awal:</label>
+                                    <select id="calc-open-pkg" onchange="updateCalculator()" class="w-full h-11 bg-laju-navyDark border border-white/15 rounded-xl px-3 text-xs font-bold text-white focus:outline-none focus:border-laju-blue">
+                                        <option value="0">Hanya Top-Up (Sudah Punya Akun)</option>
+                                        <option value="1499000">+ Sewa Akun WL No Limit (Rp 1.499.000)</option>
+                                        <option value="3199000">+ Full Package All-in-One (Rp 3.199.000)</option>
+                                        <option value="999000">+ Paket Ekspansi Multi-Akun (Rp 999.000)</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Right Summary Output (5 Cols) -->
+                        <div class="lg:col-span-5">
+                            <div class="p-6 rounded-2xl bg-laju-navyDark border border-white/15 space-y-4">
+                                <div class="flex items-center justify-between border-b border-white/10 pb-3">
+                                    <span class="text-xs font-bold uppercase tracking-wider text-slate-300">Ringkasan Estimasi</span>
+                                    <span id="calc-rate-badge" class="text-[11px] font-mono px-2.5 py-0.5 rounded bg-laju-amber/20 text-laju-amber font-bold">Fee Standar 5%</span>
+                                </div>
+
+                                <div class="space-y-2.5 text-xs">
+                                    <div class="flex justify-between text-slate-300">
+                                        <span>Saldo Iklan Masuk:</span>
+                                        <span id="calc-pure-spend" class="font-mono font-bold text-white">Rp 200.000.000</span>
+                                    </div>
+                                    <div class="flex justify-between text-slate-300">
+                                        <span>Service Fee Top-Up (<span id="calc-fee-pct-text" class="text-laju-amber font-bold">5%</span>):</span>
+                                        <span id="calc-lajupay-fee" class="font-mono font-bold text-laju-amber">Rp 10.000.000</span>
+                                    </div>
+                                    <div class="flex justify-between text-slate-300">
+                                        <span>Biaya Pembukaan Akun:</span>
+                                        <span id="calc-open-cost" class="font-mono font-bold text-blue-400">Rp 0</span>
+                                    </div>
+                                    <div class="p-3 rounded-xl bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-between">
+                                        <span class="text-emerald-300 font-bold">Bonus Akun WL (Kelipatan 200Jt):</span>
+                                        <span id="calc-bonus-accounts" class="font-mono font-extrabold text-emerald-400">1 Unit Gratis</span>
+                                    </div>
+                                </div>
+
+                                <div class="pt-3 border-t border-white/15">
+                                    <div class="flex items-baseline justify-between mb-4">
+                                        <span class="text-xs text-slate-400">Total Transfer:</span>
+                                        <span id="calc-total-basic" class="text-xl font-extrabold font-mono text-white">Rp 210.000.000</span>
+                                    </div>
+                                    <button onclick="applyCalculatorToWa()" class="h-11 w-full rounded-xl bg-emerald-500 hover:bg-emerald-600 text-laju-navyDark font-extrabold text-xs inline-flex items-center justify-center gap-2 transition-all shadow-md">
+                                        <svg class="w-4 h-4 fill-current shrink-0" viewBox="0 0 24 24"><path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766.001-3.187-2.575-5.77-5.764-5.771zm3.392 8.244c-.144.405-.837.774-1.17.824-.299.045-.677.063-1.092-.069-.252-.08-.575-.187-.988-.365-1.739-.751-2.874-2.502-2.961-2.617-.087-.116-.708-.94-.708-1.793s.448-1.273.607-1.446c.159-.173.346-.217.462-.217l.332.006c.106.005.249-.04.39.298.144.347.491 1.2.534 1.287.043.087.072.188.014.304-.058.116-.087.188-.173.289l-.26.304c-.087.086-.177.18-.076.354.101.174.449.741.964 1.201.662.591 1.221.774 1.394.86s.274.072.376-.043c.101-.116.433-.506.549-.68.116-.173.231-.145.39-.087s1.011.477 1.184.564.289.13.332.202c.045.072.045.419-.1.824zm-3.423-14.416c-6.627 0-12 5.373-12 12 0 2.625.846 5.059 2.284 7.033l-1.492 5.447 5.601-1.469c1.908 1.258 4.191 1.989 6.607 1.989 6.627 0 12-5.373 12-12s-5.373-12-12-12z"/></svg>
+                                        <span>Ajukan Top-Up &amp; Klaim Bonus via WhatsApp</span>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 7. RESTORED PREVIOUS VERSION 6-QUESTION COMPREHENSIVE FAQ -->
+        <section id="faq" class="py-16 lg:py-20 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <span class="text-xs font-extrabold uppercase tracking-widest text-blue-400">Pusat Bantuan &amp; SOP Teknis</span>
+                <h2 class="text-2xl sm:text-3xl font-extrabold text-white mt-1.5">Pertanyaan yang Sering Diajukan (FAQ)</h2>
+                <p class="text-xs sm:text-sm text-slate-300 mt-2">
+                    Penjelasan lengkap mengenai perbedaan beli putus di Shopee vs sistem sewa akun + kartu debit, aturan penurunan <em>fee</em> bulanan, serta klaim garansi.
+                </p>
+            </div>
+
+            <div class="space-y-3.5">
+                <!-- FAQ 1 -->
+                <div class="surface-card rounded-2xl overflow-hidden">
+                    <button onclick="toggleFaq(0)" class="w-full px-6 py-4 text-left flex items-center justify-between gap-4 font-bold text-sm text-white hover:text-laju-amber transition-colors">
+                        <span>1. Apa perbedaan beli putus di Katalog Shopee dengan sistem Sewa Akun Whitelist + Kartu Debit?</span>
+                        <i data-lucide="chevron-down" id="faq-icon-0" class="w-4 h-4 text-slate-400 transition-transform duration-200 shrink-0"></i>
+                    </button>
+                    <div id="faq-content-0" class="px-6 pb-5 text-xs sm:text-sm text-slate-300 leading-relaxed">
+                        Pada skema <strong>Jual Putus (21 Katalog Shopee)</strong>, aset seperti Akun Personal, BM Whitelist/Verified, maupun Fanpage Tua diserahkan sepenuhnya menjadi hak milik Anda dan Anda menautkan metode pembayaran milik sendiri. Sedangkan pada skema <strong>Sewa Akun Whitelist &amp; Kartu Debit (Laju Pay)</strong>, kami menyiapkan infrastruktur akun <em>whitelist no limit</em> beserta kartu debit pembayaran iklannya—Anda cukup melakukan <em>top-up</em> saldo melalui tim kami, dilengkapi garansi penggantian serta jaminan keamanan saldo 100%.
+                    </div>
+                </div>
+
+                <!-- FAQ 2 -->
+                <div class="surface-card rounded-2xl overflow-hidden">
+                    <button onclick="toggleFaq(1)" class="w-full px-6 py-4 text-left flex items-center justify-between gap-4 font-bold text-sm text-white hover:text-laju-amber transition-colors">
+                        <span>2. Bagaimana aturan penurunan fee top-up dari 5% ke 4%–3% dengan minimal spend Rp 1 Miliar?</span>
+                        <i data-lucide="chevron-down" id="faq-icon-1" class="w-4 h-4 text-slate-400 transition-transform duration-200 shrink-0"></i>
+                    </button>
+                    <div id="faq-content-1" class="hidden px-6 pb-5 text-xs sm:text-sm text-slate-300 leading-relaxed">
+                        Tarif standar <em>top-up</em> saldo iklan adalah <strong>5%</strong>. Apabila akumulasi <em>ad spend</em> Anda pada bulan berjalan telah mencapai <strong>minimal Rp 1.000.000.000 (1 Miliar)</strong>, maka <em>fee top-up</em> turun ke <strong>4% hingga 3%</strong> untuk sisa transaksi di bulan tersebut. Perlu diperhatikan bahwa evaluasi dilakukan setiap bulan: jika pada bulan berikutnya akumulasi <em>spend</em> berada di bawah Rp 1 Miliar, maka <em>fee</em> kembali ke tarif standar <strong>5%</strong>.
+                    </div>
+                </div>
+
+                <!-- FAQ 3 -->
+                <div class="surface-card rounded-2xl overflow-hidden">
+                    <button onclick="toggleFaq(2)" class="w-full px-6 py-4 text-left flex items-center justify-between gap-4 font-bold text-sm text-white hover:text-laju-amber transition-colors">
+                        <span>3. Bagaimana cara mendapatkan Bonus Gratis 1 Akun Iklan Whitelist No Limit setiap top-up Rp 200 Juta?</span>
+                        <i data-lucide="chevron-down" id="faq-icon-2" class="w-4 h-4 text-slate-400 transition-transform duration-200 shrink-0"></i>
+                    </button>
+                    <div id="faq-content-2" class="hidden px-6 pb-5 text-xs sm:text-sm text-slate-300 leading-relaxed">
+                        Setiap kali Anda melakukan <em>top-up</em> sebesar <strong>Rp 200.000.000</strong> (dan berlaku kelipatannya, misalnya Rp 400 Juta = 2 akun gratis, Rp 600 Juta = 3 akun gratis), Anda otomatis berhak mengklaim <strong>GRATIS biaya pembukaan 1 unit Akun Iklan Whitelist No Limit (Sewa Gratis)</strong> yang tetap dilengkapi fasilitas penuh <strong>2x garansi penggantian</strong>.
+                    </div>
+                </div>
+
+                <!-- FAQ 4 -->
+                <div class="surface-card rounded-2xl overflow-hidden">
+                    <button onclick="toggleFaq(3)" class="w-full px-6 py-4 text-left flex items-center justify-between gap-4 font-bold text-sm text-white hover:text-laju-amber transition-colors">
+                        <span>4. Bagaimana jadwal cek saldo harian dan apakah saya bisa meminta bukti mutasi kartu debit?</span>
+                        <i data-lucide="chevron-down" id="faq-icon-3" class="w-4 h-4 text-slate-400 transition-transform duration-200 shrink-0"></i>
+                    </button>
+                    <div id="faq-content-3" class="hidden px-6 pb-5 text-xs sm:text-sm text-slate-300 leading-relaxed">
+                        Admin kami melakukan <em>update</em> saldo secara rutin setiap baru buka operasional (<strong>08.00 WIB</strong>) dan menjelang tutup operasional (<strong>22.00 WIB</strong>) setiap hari <strong>Senin – Minggu</strong>, serta kapan saja sesuai permintaan pelanggan (<em>by request</em>) di jam kerja. Anda juga <strong>bebas meminta bukti mutasi setiap kartu</strong> kapan pun untuk menjaga transparansi penuh.
+                    </div>
+                </div>
+
+                <!-- FAQ 5 -->
+                <div class="surface-card rounded-2xl overflow-hidden">
+                    <button onclick="toggleFaq(4)" class="w-full px-6 py-4 text-left flex items-center justify-between gap-4 font-bold text-sm text-white hover:text-laju-amber transition-colors">
+                        <span>5. Berapa lama proses penyiapan akun dan apa SOP wajib setelah akun diterima?</span>
+                        <i data-lucide="chevron-down" id="faq-icon-4" class="w-4 h-4 text-slate-400 transition-transform duration-200 shrink-0"></i>
+                    </button>
+                    <div id="faq-content-4" class="hidden px-6 pb-5 text-xs sm:text-sm text-slate-300 leading-relaxed">
+                        Setelah pembayaran terkonfirmasi, tim kami menyiapkan infrastruktur akun paling lama <strong>1 x 24 jam</strong>. Setelah akun dikirimkan dan berhasil login di perangkat Anda, akun wajib <strong>didiamkan terlebih dahulu selama 12 – 24 jam</strong> untuk penyesuaian IP. Pastikan koneksi IP atau <em>proxy</em> tidak berubah-ubah agar akun tidak rentan terkena pembatasan otomatis.
+                    </div>
+                </div>
+
+                <!-- FAQ 6 -->
+                <div class="surface-card rounded-2xl overflow-hidden">
+                    <button onclick="toggleFaq(5)" class="w-full px-6 py-4 text-left flex items-center justify-between gap-4 font-bold text-sm text-white hover:text-laju-amber transition-colors">
+                        <span>6. Bagaimana jika akun sewa bermasalah dan bagaimana nasib sisa saldo iklan di dalamnya?</span>
+                        <i data-lucide="chevron-down" id="faq-icon-5" class="w-4 h-4 text-slate-400 transition-transform duration-200 shrink-0"></i>
+                    </button>
+                    <div id="faq-content-5" class="hidden px-6 pb-5 text-xs sm:text-sm text-slate-300 leading-relaxed">
+                        Untuk paket sewa, <strong>Akun Personal &amp; BM mendapatkan 1x garansi</strong> sedangkan <strong>Akun Iklan Whitelist No Limit mendapatkan 2x garansi</strong>. Jika terjadi kendala, tim kami langsung membantu pengecekan <em>maintenance</em>, proses pengajuan banding (<em>appeal</em>), atau penggantian unit sesuai garansi. <strong>Sisa saldo iklan Anda dijamin 100% aman dan dapat dipindahkan</strong> ke akun pengganti.
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 8. RESTORED PREVIOUS VERSION COMPREHENSIVE 4-COLUMN FOOTER -->
+        <footer class="border-t border-white/10 bg-laju-navyDark pt-14 pb-10 text-xs text-slate-400">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-10 pb-12 border-b border-white/10">
+                    <!-- Column 1: Brand Identity & Operational Badge (4 Cols) -->
+                    <div class="lg:col-span-4 space-y-4">
+                        <a href="#" class="flex items-center gap-3 focus:outline-none">
+                            <svg class="w-10 h-8 shrink-0" viewBox="0 0 110 86" fill="none">
+                                <g transform="translate(55 43) rotate(-9) translate(-46 -33)">
+                                    <rect width="92" height="66" rx="15" fill="#FFFFFF"/>
+                                    <rect x="12" y="13" width="21" height="14" rx="4" fill="#0B1930"/>
+                                    <rect x="39" y="37" width="11.5" height="19" rx="5.75" fill="#2563EB"/>
+                                    <rect x="55.5" y="25" width="11.5" height="31" rx="5.75" fill="#FF2E7E"/>
+                                    <rect x="72" y="13" width="11.5" height="43" rx="5.75" fill="#FFB800"/>
+                                </g>
+                            </svg>
+                            <div class="flex flex-col leading-none">
+                                <span class="font-extrabold text-lg tracking-tight text-white">LAJU</span>
+                                <span class="text-[9px] font-bold text-[#3B82F6] tracking-[0.32em] uppercase mt-0.5">DIGITAL</span>
+                            </div>
+                        </a>
+                        <p class="text-xs text-slate-300 leading-relaxed">
+                            <strong>Solusi Akun Iklan Siap Scale &amp; Stabil.</strong> Penyedia infrastruktur akun periklanan digital (Meta Ads &amp; TikTok Ads) serta solusi pembayaran kartu debit terkelola untuk <em>advertiser</em>, UMKM, dan agensi di Indonesia.
+                        </p>
+                        <div class="inline-flex items-center gap-2 px-3 py-2 rounded-xl bg-white/5 border border-white/10 text-[11px] text-slate-200 font-semibold">
+                            <span class="w-2 h-2 rounded-full bg-emerald-400"></span>
+                            <span>Jam Operasional: 08.00 – 22.00 WIB (Senin – Minggu)</span>
+                        </div>
+                    </div>
+
+                    <!-- Column 2: Navigasi Utama (2 Cols) -->
+                    <div class="lg:col-span-2 space-y-3">
+                        <h4 class="text-xs font-extrabold uppercase tracking-wider text-white">Navigasi Utama</h4>
+                        <ul class="space-y-2">
+                            <li><a href="#katalog-shopee" class="hover:text-white transition-colors">21 Katalog Shopee</a></li>
+                            <li><a href="#sewa-kartu" class="hover:text-white transition-colors">Sewa Akun &amp; Kartu</a></li>
+                            <li><a href="#kalkulator" class="hover:text-white transition-colors">Kalkulator Top-Up</a></li>
+                            <li><a href="#faq" class="hover:text-white transition-colors">FAQ &amp; SOP Teknis</a></li>
+                        </ul>
+                    </div>
+
+                    <!-- Column 3: Lini Produk Meta Ads (3 Cols) -->
+                    <div class="lg:col-span-3 space-y-3">
+                        <h4 class="text-xs font-extrabold uppercase tracking-wider text-white">Lini Produk Meta Ads</h4>
+                        <ul class="space-y-2">
+                            <li><button onclick="setShopeeCategory('personal-wl'); document.getElementById('katalog-shopee').scrollIntoView({behavior:'smooth'});" class="hover:text-white transition-colors text-left">Akun Personal &amp; FB Whitelist</button></li>
+                            <li><button onclick="setShopeeCategory('bm-wl'); document.getElementById('katalog-shopee').scrollIntoView({behavior:'smooth'});" class="hover:text-white transition-colors text-left">BM Reinstated &amp; BM Whitelist</button></li>
+                            <li><button onclick="setShopeeCategory('bm-verified'); document.getElementById('katalog-shopee').scrollIntoView({behavior:'smooth'});" class="hover:text-white transition-colors text-left">BM Verified Resmi (No Limit)</button></li>
+                            <li><button onclick="setShopeeCategory('page-tiktok'); document.getElementById('katalog-shopee').scrollIntoView({behavior:'smooth'});" class="hover:text-white transition-colors text-left">Aged Fanpage &amp; TikTok Verified</button></li>
+                            <li><a href="#sewa-kartu" class="hover:text-white transition-colors">Sewa Akun WL &amp; Kartu Debit Laju Pay</a></li>
+                        </ul>
+                    </div>
+
+                    <!-- Column 4: Kanal Transaksi & Legalitas (3 Cols) -->
+                    <div class="lg:col-span-3 space-y-3">
+                        <h4 class="text-xs font-extrabold uppercase tracking-wider text-white">Kanal Transaksi &amp; Ketentuan</h4>
+                        <ul class="space-y-2">
+                            <li><button onclick="openShopeeModal('Official Store Shopee Laju Digital')" class="text-orange-400 hover:text-orange-300 font-bold">Checkout via Shopee Official →</button></li>
+                            <li><button onclick="openWaModal('Konsultasi Infrastruktur Meta Ads & Sewa Kartu Debit')" class="text-emerald-400 hover:text-emerald-300 font-bold">Konsultasi &amp; Order via WhatsApp →</button></li>
+                            <li><button onclick="openLegalModal('tos')" class="hover:text-white transition-colors">Syarat &amp; Ketentuan Layanan</button></li>
+                            <li><button onclick="openLegalModal('privacy')" class="hover:text-white transition-colors">Kebijakan Privasi Data</button></li>
+                            <li><button onclick="openLegalModal('warranty')" class="hover:text-white transition-colors">Ketentuan Garansi &amp; Top-Up</button></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Bottom Copyright & Disclaimer Bar + Subtle Lock Icon to #/invoice -->
+                <div class="pt-6 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 text-[11px] text-slate-500">
+                    <p>© 2026 Laju Digital — Digital Advertising Solutions. Seluruh hak cipta dilindungi. Meta™, Facebook™, Instagram™, dan TikTok™ adalah merek dagang dari masing-masing pemiliknya.</p>
+                    <div class="flex items-center gap-3 shrink-0">
+                        <span>Indonesia</span>
+                        <a href="#/invoice" class="opacity-30 hover:opacity-100 transition-opacity text-slate-400 hover:text-laju-amber p-1 rounded" title="invoice.lajudigital.id (Internal Billing Portal)">
+                            <i data-lucide="lock" class="w-3.5 h-3.5"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </footer>
+
+        <!-- Floating Quick Action (Bottom Right on Public Home) -->
+        <div class="fixed bottom-5 right-5 z-30 flex items-center gap-2">
+            <button onclick="openShopeeModal('Etalase 21 Produk — Shopee Official Laju Digital')" class="h-11 px-4 rounded-2xl bg-[#EE4D2D] hover:bg-[#d73f20] text-white font-extrabold text-xs inline-flex items-center gap-2 shadow-xl transition-all">
+                <svg class="w-4 h-4 fill-current shrink-0" viewBox="0 0 24 24"><path d="M19 6h-2c0-2.76-2.24-5-5-5S7 3.24 7 6H5c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2zm-7-3c1.66 0 3 1.34 3 3H9c0-1.66 1.34-3 3-3zm7 17H5V8h14v12zm-7-8c-1.66 0-3-1.34-3-3H7c0 2.76 2.24 5 5 5s5-2.24 5-5h-2c0 1.66-1.34 3-3 3z"/></svg>
+                <span class="hidden sm:inline">Shopee Official</span>
+            </button>
+            <button onclick="openWaModal('Halo Admin Laju Digital, saya ingin konsultasi order Akun Meta Ads / Sewa Kartu Debit.')" class="h-11 px-4 rounded-2xl bg-emerald-500 hover:bg-emerald-600 text-laju-navyDark font-extrabold text-xs inline-flex items-center gap-2 shadow-xl transition-all">
+                <svg class="w-4 h-4 fill-current shrink-0" viewBox="0 0 24 24"><path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766.001-3.187-2.575-5.77-5.764-5.771zm3.392 8.244c-.144.405-.837.774-1.17.824-.299.045-.677.063-1.092-.069-.252-.08-.575-.187-.988-.365-1.739-.751-2.874-2.502-2.961-2.617-.087-.116-.708-.94-.708-1.793s.448-1.273.607-1.446c.159-.173.346-.217.462-.217l.332.006c.106.005.249-.04.39.298.144.347.491 1.2.534 1.287.043.087.072.188.014.304-.058.116-.087.188-.173.289l-.26.304c-.087.086-.177.18-.076.354.101.174.449.741.964 1.201.662.591 1.221.774 1.394.86s.274.072.376-.043c.101-.116.433-.506.549-.68.116-.173.231-.145.39-.087s1.011.477 1.184.564.289.13.332.202c.045.072.045.419-.1.824zm-3.423-14.416c-6.627 0-12 5.373-12 12 0 2.625.846 5.059 2.284 7.033l-1.492 5.447 5.601-1.469c1.908 1.258 4.191 1.989 6.607 1.989 6.627 0 12-5.373 12-12s-5.373-12-12-12z"/></svg>
+                <span>Chat Admin WA</span>
+            </button>
+        </div>
+
+    </div>
+    <!-- END OF PUBLIC WEBSITE VIEW -->
+
+    <!-- ================================================================= -->
+    <!-- DEDICATED SUBDOMAIN / ROUTE VIEW: #/invoice (invoice.lajudigital.id) -->
+    <!-- ================================================================= -->
+    <div id="invoice-portal-view" class="hidden min-h-screen bg-laju-navyDark text-white">
+        <!-- Subdomain Top Header -->
+        <header class="border-b border-white/10 bg-laju-navy sticky top-0 z-40">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between gap-4">
+                <div class="flex items-center gap-3">
+                    <svg class="w-9 h-7 shrink-0" viewBox="0 0 110 86" fill="none">
+                        <g transform="translate(55 43) rotate(-9) translate(-46 -33)">
+                            <rect width="92" height="66" rx="14" fill="#FFFFFF"/>
+                            <rect x="12" y="13" width="21" height="14" rx="4" fill="#0B1930"/>
+                            <rect x="39" y="37" width="11.5" height="19" rx="5.75" fill="#2563EB"/>
+                            <rect x="55.5" y="25" width="11.5" height="31" rx="5.75" fill="#FF2E7E"/>
+                            <rect x="72" y="13" width="11.5" height="43" rx="5.75" fill="#FFB800"/>
+                        </g>
+                    </svg>
+                    <div>
+                        <div class="flex items-center gap-2">
+                            <span class="font-extrabold text-sm text-white">LAJU DIGITAL</span>
+                            <span class="px-2 py-0.5 rounded-md bg-laju-amber/20 border border-laju-amber/40 text-laju-amber font-mono text-[10px] font-bold">
+                                invoice.lajudigital.id • Internal Billing System
+                            </span>
+                        </div>
+                        <p class="text-[11px] text-slate-400">Generator Invoice Resmi &amp; Pencatatan Transaksi WhatsApp</p>
+                    </div>
+                </div>
+
+                <div class="flex items-center gap-2.5">
+                    <button onclick="createNewBlankInvoice()" class="h-9 px-3.5 rounded-xl bg-white/5 hover:bg-white/10 border border-white/15 text-xs font-bold text-slate-200 inline-flex items-center gap-1.5">
+                        <i data-lucide="plus" class="w-3.5 h-3.5 text-laju-amber"></i>
+                        <span>Reset / Invoice Baru</span>
+                    </button>
+                    <a href="#" class="h-9 px-3.5 rounded-xl bg-laju-blue hover:bg-blue-600 text-white text-xs font-extrabold inline-flex items-center gap-1.5">
+                        <i data-lucide="arrow-left" class="w-3.5 h-3.5"></i>
+                        <span>Kembali ke Beranda Publik</span>
+                    </a>
+                </div>
+            </div>
+        </header>
+
+        <!-- Subdomain Main Workspace -->
+        <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+            <div class="grid lg:grid-cols-12 gap-6 items-start">
+                <!-- Left Column: Logged WA Transactions & Invoice Form (5 Cols) -->
+                <div class="lg:col-span-5 space-y-5 text-xs">
+                    <div class="surface-card rounded-2xl p-5">
+                        <div class="flex items-center justify-between mb-3">
+                            <span class="font-extrabold text-white text-xs sm:text-sm">Riwayat Transaksi Masuk via WhatsApp</span>
+                            <span id="admin-order-count" class="text-[10px] font-mono px-2.5 py-0.5 rounded-full bg-emerald-500/20 text-emerald-300 font-bold">0 Order</span>
+                        </div>
+                        <div id="admin-orders-list" class="space-y-2 max-h-40 overflow-y-auto pr-1"></div>
+                    </div>
+
+                    <div class="surface-card rounded-2xl p-5 space-y-3.5">
+                        <h3 class="font-extrabold text-white text-sm border-b border-white/10 pb-2.5">Detail Tagihan &amp; Klien</h3>
+
+                        <div class="grid grid-cols-2 gap-3">
+                            <div>
+                                <label class="block text-slate-400 mb-1">Nomor Invoice</label>
+                                <input type="text" id="inv-no" oninput="renderLiveInvoice()" value="INV/LAJU/2026/8821" class="w-full h-9 px-3 rounded-lg bg-laju-navy border border-white/15 text-white font-mono text-xs">
+                            </div>
+                            <div>
+                                <label class="block text-slate-400 mb-1">Status Tagihan</label>
+                                <select id="inv-status" onchange="renderLiveInvoice()" class="w-full h-9 px-2.5 rounded-lg bg-laju-navy border border-white/15 text-white font-bold text-xs">
+                                    <option value="LUNAS (PAID)">LUNAS (PAID)</option>
+                                    <option value="MENUNGGU PEMBAYARAN">MENUNGGU PEMBAYARAN</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="grid grid-cols-2 gap-3">
+                            <div>
+                                <label class="block text-slate-400 mb-1">Nama Klien</label>
+                                <input type="text" id="inv-client-name" oninput="renderLiveInvoice()" value="Bpk. Rendra Pratama" class="w-full h-9 px-3 rounded-lg bg-laju-navy border border-white/15 text-white text-xs">
+                            </div>
+                            <div>
+                                <label class="block text-slate-400 mb-1">Brand / Agensi</label>
+                                <input type="text" id="inv-client-org" oninput="renderLiveInvoice()" value="ScaleUp Digital ID" class="w-full h-9 px-3 rounded-lg bg-laju-navy border border-white/15 text-white text-xs">
+                            </div>
+                        </div>
+
+                        <div>
+                            <label class="block text-slate-400 mb-1">Pilih Produk (21 Katalog / 3 Paket Sewa)</label>
+                            <select id="inv-item-select" onchange="onAdminItemSelectChange()" class="w-full h-9 px-2.5 rounded-lg bg-laju-navy border border-white/15 text-white text-xs"></select>
+                        </div>
+
+                        <div class="grid grid-cols-3 gap-3">
+                            <div class="col-span-2">
+                                <label class="block text-slate-400 mb-1">Harga Satuan (Rp)</label>
+                                <input type="number" id="inv-item-price" oninput="renderLiveInvoice()" value="3199000" step="10000" class="w-full h-9 px-3 rounded-lg bg-laju-navy border border-white/15 text-white font-mono text-xs">
+                            </div>
+                            <div>
+                                <label class="block text-slate-400 mb-1">Qty</label>
+                                <input type="number" id="inv-item-qty" oninput="renderLiveInvoice()" value="1" min="1" class="w-full h-9 px-3 rounded-lg bg-laju-navy border border-white/15 text-white font-mono text-xs">
+                            </div>
+                        </div>
+
+                        <div class="grid grid-cols-2 gap-3 pt-2 border-t border-white/10">
+                            <div>
+                                <label class="block text-slate-400 mb-1">Nominal Top-Up (Rp)</label>
+                                <input type="number" id="inv-topup-amount" oninput="renderLiveInvoice()" value="10000000" step="1000000" class="w-full h-9 px-3 rounded-lg bg-laju-navy border border-white/15 text-laju-amber font-mono font-bold text-xs">
+                            </div>
+                            <div>
+                                <label class="block text-slate-400 mb-1">Fee Top-Up (%)</label>
+                                <select id="inv-topup-fee-rate" onchange="renderLiveInvoice()" class="w-full h-9 px-2.5 rounded-lg bg-laju-navy border border-white/15 text-white text-xs">
+                                    <option value="0.05">5% (Standar &lt; 1M)</option>
+                                    <option value="0.04">4% (Spend ≥ 1M/Bln)</option>
+                                    <option value="0.03">3% (VIP ≥ 2M/Bln)</option>
+                                    <option value="0">0% (Tanpa Top-Up)</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div>
+                            <label class="block text-slate-400 mb-1">Catatan Garansi &amp; SOP</label>
+                            <input type="text" id="inv-notes" oninput="renderLiveInvoice()" value="Garansi 1x Personal/BM & 2x Akun WL No Limit. Wajib diamkan IP 12-24 jam." class="w-full h-9 px-3 rounded-lg bg-laju-navy border border-white/15 text-slate-200 text-xs">
+                        </div>
+
+                        <div class="grid grid-cols-2 gap-3 pt-2">
+                            <button onclick="downloadInvoiceAsPNG()" class="h-11 rounded-xl bg-laju-amber hover:bg-amber-400 text-laju-navyDark font-extrabold text-xs inline-flex items-center justify-center gap-1.5 shadow-md">
+                                <i data-lucide="download" class="w-4 h-4"></i>
+                                <span>Download (.PNG)</span>
+                            </button>
+                            <button onclick="printOrSaveInvoicePDF()" class="h-11 rounded-xl bg-laju-blue hover:bg-blue-600 text-white font-extrabold text-xs inline-flex items-center justify-center gap-1.5 shadow-md">
+                                <i data-lucide="printer" class="w-4 h-4"></i>
+                                <span>Print / Save PDF</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right Column: Live Invoice Preview (7 Cols) -->
+                <div class="lg:col-span-7 surface-card rounded-2xl p-4 sm:p-6">
+                    <div id="invoice-printable-area" class="bg-white text-slate-900 rounded-2xl p-6 sm:p-8 shadow-xl">
+                        <div class="h-1.5 w-full brand-bar-border rounded-full mb-5"></div>
+                        <div class="flex flex-wrap items-start justify-between gap-4 pb-5 border-b border-slate-200">
+                            <div class="flex items-center gap-3">
+                                <div class="w-11 h-9 rounded-xl bg-[#0B1930] flex items-center justify-center p-1.5">
+                                    <svg class="w-full h-full" viewBox="0 0 92 66" fill="none">
+                                        <g transform="translate(46 33) rotate(-9) translate(-42 -29)">
+                                            <rect width="84" height="58" rx="13" fill="#FFFFFF"/>
+                                            <rect x="11" y="11" width="18" height="12" rx="3.5" fill="#0B1930"/>
+                                            <rect x="35" y="33" width="10" height="17" rx="5" fill="#2563EB"/>
+                                            <rect x="50" y="22" width="10" height="28" rx="5" fill="#FF2E7E"/>
+                                            <rect x="65" y="11" width="10" height="39" rx="5" fill="#FFB800"/>
+                                        </g>
+                                    </svg>
+                                </div>
+                                <div>
+                                    <h4 class="font-extrabold text-lg tracking-tight text-[#0B1930] leading-none">LAJU DIGITAL</h4>
+                                    <p class="text-[9px] font-bold text-[#2563EB] tracking-[0.24em] uppercase mt-1">DIGITAL ADVERTISING SOLUTIONS</p>
+                                </div>
+                            </div>
+                            <div class="text-right">
+                                <span id="preview-inv-status" class="inline-block px-2.5 py-0.5 rounded-full text-[10px] font-extrabold bg-emerald-100 text-emerald-800 border border-emerald-300">LUNAS (PAID)</span>
+                                <p id="preview-inv-no" class="font-mono font-extrabold text-xs text-[#0B1930] mt-1.5">INV/LAJU/2026/8821</p>
+                                <p id="preview-inv-date" class="text-[10px] text-slate-500">Tanggal: 30 Okt 2026</p>
+                            </div>
+                        </div>
+
+                        <div class="grid sm:grid-cols-2 gap-4 py-4 border-b border-slate-200 text-xs">
+                            <div>
+                                <span class="text-[10px] font-bold uppercase text-slate-400 block">Ditagihkan Kepada:</span>
+                                <p id="preview-client-name" class="font-extrabold text-sm text-[#0B1930] mt-0.5">Bpk. Rendra Pratama</p>
+                                <p id="preview-client-org" class="text-slate-600">ScaleUp Digital ID</p>
+                            </div>
+                            <div class="sm:text-right">
+                                <span class="text-[10px] font-bold uppercase text-slate-400 block">Jam Operasional Resmi:</span>
+                                <p class="font-bold text-[#0B1930] mt-0.5">08.00 – 22.00 WIB (Senin – Minggu)</p>
+                                <p class="text-slate-500">Update Saldo &amp; Mutasi Kartu Transparan</p>
+                            </div>
+                        </div>
+
+                        <div class="py-4">
+                            <table class="w-full text-left border-collapse text-xs">
+                                <thead>
+                                    <tr class="border-b border-slate-200 text-[10px] uppercase text-slate-500">
+                                        <th class="pb-2 font-extrabold">Deskripsi Infrastruktur / Layanan</th>
+                                        <th class="pb-2 font-extrabold text-center">Qty</th>
+                                        <th class="pb-2 font-extrabold text-right">Harga</th>
+                                        <th class="pb-2 font-extrabold text-right">Subtotal</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="preview-items-tbody" class="divide-y divide-slate-200 text-slate-800"></tbody>
+                            </table>
+                        </div>
+
+                        <div class="pt-4 border-t border-slate-200 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+                            <div class="bg-slate-50 border border-slate-200 rounded-xl p-3 text-[11px] text-slate-600 max-w-xs">
+                                <strong class="text-[#0B1930] block mb-0.5">Catatan &amp; Garansi:</strong>
+                                <span id="preview-inv-notes"></span>
+                            </div>
+                            <div class="w-full sm:w-60 space-y-1 text-xs">
+                                <div class="flex justify-between text-slate-600">
+                                    <span>Subtotal Produk:</span>
+                                    <span id="preview-sub-item" class="font-mono font-bold"></span>
+                                </div>
+                                <div class="flex justify-between text-slate-600">
+                                    <span>Top-Up + Fee (<span id="preview-fee-pct">5%</span>):</span>
+                                    <span id="preview-sub-topup" class="font-mono font-bold"></span>
+                                </div>
+                                <div class="flex justify-between text-emerald-700 font-bold text-[11px]">
+                                    <span>Bonus Akun WL (200Jt):</span>
+                                    <span id="preview-bonus-wl"></span>
+                                </div>
+                                <div class="pt-2 border-t border-slate-300 flex justify-between items-baseline text-sm font-extrabold text-[#0B1930]">
+                                    <span>TOTAL:</span>
+                                    <span id="preview-grand-total" class="font-mono text-base text-[#2563EB]"></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+    <!-- END OF DEDICATED INVOICE PORTAL VIEW -->
+
+    <!-- SHOPEE CHECKOUT MODAL -->
+    <div id="shopee-modal" class="hidden fixed inset-0 z-50 bg-black/80 backdrop-blur-sm flex items-center justify-center p-4">
+        <div class="bg-laju-navy border border-[#EE4D2D]/60 rounded-3xl max-w-md w-full p-6 shadow-2xl">
+            <div class="flex items-center justify-between border-b border-white/10 pb-3.5">
+                <div class="flex items-center gap-2.5">
+                    <div class="w-8 h-8 rounded-lg bg-[#EE4D2D] flex items-center justify-center text-white">
+                        <i data-lucide="shopping-bag" class="w-4 h-4"></i>
+                    </div>
+                    <h3 class="text-sm font-extrabold text-white">Checkout Shopee Official</h3>
+                </div>
+                <button onclick="closeShopeeModal()" class="p-1.5 rounded-lg bg-white/5 text-slate-300 hover:text-white">
+                    <i data-lucide="x" class="w-4 h-4"></i>
+                </button>
+            </div>
+            <div class="py-4 space-y-3 text-xs text-slate-300">
+                <div class="p-3.5 rounded-xl bg-laju-navyDark border border-white/10">
+                    <span class="text-[10px] text-slate-400 block">Produk Dipilih:</span>
+                    <p id="shopee-selected-item" class="font-extrabold text-white text-xs sm:text-sm mt-0.5"></p>
+                </div>
+                <div class="p-3.5 rounded-xl bg-white/5 border border-white/10 flex items-center justify-between">
+                    <span class="text-slate-400">Kode Referensi Shopee:</span>
+                    <span id="shopee-order-code" class="font-mono font-bold text-laju-amber">LAJU-SHP-8821</span>
+                </div>
+            </div>
+            <div class="pt-3 border-t border-white/10 grid grid-cols-2 gap-2.5">
+                <button onclick="copyShopeeOrderCode()" id="copy-shopee-btn" class="h-10 rounded-xl bg-white/10 hover:bg-white/15 text-white font-bold text-xs inline-flex items-center justify-center gap-1.5">
+                    <i data-lucide="copy" class="w-3.5 h-3.5"></i> Salin Kode
+                </button>
+                <a href="https://shopee.co.id" target="_blank" rel="noopener noreferrer" class="h-10 rounded-xl bg-[#EE4D2D] hover:bg-[#d73f20] text-white font-extrabold text-xs inline-flex items-center justify-center gap-1.5">
+                    <span>Buka Shopee</span>
+                    <i data-lucide="external-link" class="w-3.5 h-3.5"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- WHATSAPP ORDER MODAL (CLEAN PUBLIC VERSION — NO INVOICE BUTTON) -->
+    <div id="wa-modal" class="hidden fixed inset-0 z-50 bg-black/80 backdrop-blur-sm flex items-center justify-center p-4">
+        <div class="bg-laju-navy border border-emerald-500/60 rounded-3xl max-w-lg w-full p-6 shadow-2xl">
+            <div class="flex items-center justify-between border-b border-white/10 pb-3.5">
+                <div class="flex items-center gap-2.5">
+                    <div class="w-8 h-8 rounded-lg bg-emerald-500 flex items-center justify-center text-laju-navyDark">
+                        <i data-lucide="message-circle" class="w-4 h-4"></i>
+                    </div>
+                    <div>
+                        <h3 class="text-sm font-extrabold text-white">Konsultasi &amp; Order via WhatsApp</h3>
+                        <span class="text-[10px] text-emerald-400 block">Jam Operasional 08.00 – 22.00 WIB</span>
+                    </div>
+                </div>
+                <button onclick="closeWaModal()" class="p-1.5 rounded-lg bg-white/5 text-slate-300 hover:text-white">
+                    <i data-lucide="x" class="w-4 h-4"></i>
+                </button>
+            </div>
+            <div class="py-4 space-y-3 text-xs text-slate-300">
+                <div class="p-3.5 rounded-xl bg-laju-navyDark border border-white/10">
+                    <span class="text-[10px] text-slate-400 block">Layanan / Produk:</span>
+                    <p id="wa-selected-item" class="font-extrabold text-white text-xs sm:text-sm mt-0.5"></p>
+                </div>
+                <div>
+                    <label class="block text-[11px] font-bold text-slate-300 mb-1">Pesan WhatsApp:</label>
+                    <textarea id="wa-custom-message" rows="4" class="w-full p-3 rounded-xl bg-laju-navyDark border border-white/15 text-xs text-white focus:outline-none focus:border-emerald-400"></textarea>
+                </div>
+            </div>
+            <div class="pt-3 border-t border-white/10 flex flex-wrap gap-2 justify-end">
+                <button onclick="copyWaMessage()" id="copy-wa-btn" class="h-10 px-4 rounded-xl bg-white/10 hover:bg-white/15 text-white font-bold text-xs inline-flex items-center gap-1.5">
+                    <i data-lucide="copy" class="w-3.5 h-3.5"></i> Salin Pesan
+                </button>
+                <a id="wa-direct-link" onclick="recordWaOrderToBackend()" href="https://api.whatsapp.com/send?text=Halo%20Admin%20Laju%20Digital" target="_blank" rel="noopener noreferrer" class="h-10 px-5 rounded-xl bg-emerald-500 hover:bg-emerald-600 text-laju-navyDark font-extrabold text-xs inline-flex items-center gap-1.5">
+                    <span>Kirim ke WhatsApp</span>
+                    <i data-lucide="send" class="w-3.5 h-3.5"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- LEGAL & WARRANTY INFO MODAL -->
+    <div id="legal-modal" class="hidden fixed inset-0 z-50 bg-black/80 backdrop-blur-sm flex items-center justify-center p-4">
+        <div class="bg-laju-navy border border-white/20 rounded-3xl max-w-lg w-full p-6 shadow-2xl">
+            <div class="flex items-center justify-between border-b border-white/10 pb-3.5">
+                <h3 id="legal-modal-title" class="text-sm font-extrabold text-white">Ketentuan Layanan Laju Digital</h3>
+                <button onclick="closeLegalModal()" class="p-1.5 rounded-lg bg-white/5 text-slate-300 hover:text-white">
+                    <i data-lucide="x" class="w-4 h-4"></i>
+                </button>
+            </div>
+            <div id="legal-modal-body" class="py-4 text-xs text-slate-300 space-y-2.5 leading-relaxed max-h-80 overflow-y-auto"></div>
+            <div class="pt-3 border-t border-white/10 text-right">
+                <button onclick="closeLegalModal()" class="h-9 px-4 rounded-xl bg-laju-blue text-white font-bold text-xs">Mengerti &amp; Tutup</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        lucide.createIcons();
+
+        // Mobile Menu Toggle
+        document.getElementById('mobile-menu-btn').addEventListener('click', () => {
+            document.getElementById('mobile-menu').classList.toggle('hidden');
+        });
+
+        // 21 CURATED PRODUCTS (ALL +RP 200.000 APPLIED)
+        const shopeeCatalogData = [
+            // Akun Personal & WL (6)
+            { id: 1, category: 'personal-wl', groupLabel: 'AKUN PERSONAL & WL', title: 'Meta Personal Ad Account — Starter Limit $50', subtitle: 'Akun personal terawat untuk split-testing & pemanasan pixel.', strikePrice: 'Rp 589.000', price: 'Rp 539.000', numericPrice: 539000, badge: 'Limit $50' },
+            { id: 2, category: 'personal-wl', groupLabel: 'AKUN PERSONAL & WL', title: 'Meta All-in-One Bundle (Personal + BM + FP $250)', subtitle: 'Paket komplit terima beres dengan plafon harian $250.', strikePrice: 'Rp 3.559.000', price: 'Rp 2.559.000', numericPrice: 2559000, badge: 'Bundle $250', popular: true },
+            { id: 3, category: 'personal-wl', groupLabel: 'AKUN PERSONAL & WL', title: 'Meta Ad Account Whitelist — Daily Limit $250', subtitle: 'Akun iklan whitelist satuan dengan reputasi billing bersih.', strikePrice: 'Rp 1.199.000', price: 'Rp 1.099.000', numericPrice: 1099000, badge: 'WL $250' },
+            { id: 4, category: 'personal-wl', groupLabel: 'AKUN PERSONAL & WL', title: 'Meta Ad Account Whitelist — Dynamic No Limit', subtitle: 'Start limit $250 dan naik otomatis ke No Limit seiring spend.', strikePrice: 'Rp 1.679.000', price: 'Rp 1.209.000', numericPrice: 1209000, badge: 'Dynamic WL' },
+            { id: 5, category: 'personal-wl', groupLabel: 'AKUN PERSONAL & WL', title: 'Meta Ad Account Whitelist — Instant No Limit', subtitle: 'Status langsung No Limit sejak hari pertama tanpa plafon.', strikePrice: 'Rp 2.209.000', price: 'Rp 1.709.000', numericPrice: 1709000, badge: 'Instant No Limit', popular: true },
+            { id: 6, category: 'personal-wl', groupLabel: 'AKUN PERSONAL & WL', title: 'Meta King Profile Aged + Reinstated Access', subtitle: 'Profil tua lolos verifikasi identitas sebagai admin utama BM.', strikePrice: 'Rp 1.250.000', price: 'Rp 899.000', numericPrice: 899000, badge: 'King Profile' },
+
+            // BM Reinstated & Whitelist (7)
+            { id: 7, category: 'bm-wl', groupLabel: 'BM REINSTATED & WL', title: 'BM Reinstated Recovery — 1 Ad Account ($50)', subtitle: 'Business Manager lolos banding resmi berisi 1 akun iklan.', strikePrice: 'Rp 829.000', price: 'Rp 729.000', numericPrice: 729000, badge: 'Reinstated $50' },
+            { id: 8, category: 'bm-wl', groupLabel: 'BM REINSTATED & WL', title: 'BM Whitelist Pro — 1 Ad Account (Limit $250)', subtitle: 'BM Whitelist stabil dengan 1 akun iklan plafon harian $250.', strikePrice: 'Rp 2.409.000', price: 'Rp 1.709.000', numericPrice: 1709000, badge: 'BM WL 1 Akun' },
+            { id: 9, category: 'bm-wl', groupLabel: 'BM REINSTATED & WL', title: 'BM Whitelist Scale — 5 Ad Accounts (Limit $250)', subtitle: 'Kapasitas 5 akun iklan aktif untuk multi-produk & tim.', strikePrice: 'Rp 4.199.000', price: 'Rp 3.199.000', numericPrice: 3199000, badge: 'BM WL 5 Akun', popular: true },
+            { id: 10, category: 'bm-wl', groupLabel: 'BM REINSTATED & WL', title: 'BM Whitelist Executive — 1 Ad Account (No Limit)', subtitle: 'BM Whitelist tanpa batas spend harian berisi 1 akun iklan.', strikePrice: 'Rp 4.159.000', price: 'Rp 3.200.000', numericPrice: 3200000, badge: 'No Limit 1 Akun' },
+            { id: 11, category: 'bm-wl', groupLabel: 'BM REINSTATED & WL', title: 'BM Whitelist Agency — 5 Ad Accounts (No Limit)', subtitle: 'Infrastruktur kelas agensi dengan 5 akun iklan No Limit.', strikePrice: 'Rp 6.499.000', price: 'Rp 5.199.000', numericPrice: 5199000, badge: 'No Limit 5 Akun', popular: true },
+            { id: 12, category: 'bm-wl', groupLabel: 'BM REINSTATED & WL', title: 'BM Whitelist Enterprise — 10 Ad Accounts (No Limit)', subtitle: 'Kapasitas penuh 10 akun iklan No Limit untuk skala besar.', strikePrice: 'Rp 11.009.000', price: 'Rp 9.299.000', numericPrice: 9299000, badge: 'No Limit 10 Akun' },
+            { id: 13, category: 'bm-wl', groupLabel: 'BM REINSTATED & WL', title: 'BM Pixel Master & Catalog Vault (Limit $250)', subtitle: 'BM khusus isolasi & penyimpanan aset Pixel Master agar aman.', strikePrice: 'Rp 1.850.000', price: 'Rp 1.399.000', numericPrice: 1399000, badge: 'Pixel Vault' },
+
+            // BM Verified Resmi (4)
+            { id: 14, category: 'bm-verified', groupLabel: 'BM VERIFIED RESMI', title: 'BM Verified Corporate + Admin Personal', subtitle: 'BM terverifikasi dokumen perusahaan + akun admin pengelola.', strikePrice: 'Rp 4.199.000', price: 'Rp 3.309.000', numericPrice: 3309000, badge: 'Verified + Admin' },
+            { id: 15, category: 'bm-verified', groupLabel: 'BM VERIFIED RESMI', title: 'BM Verified Official — 1 Ad Account (No Limit)', subtitle: 'BM centang biru resmi dengan 1 akun iklan No Limit.', strikePrice: 'Rp 5.339.000', price: 'Rp 4.799.000', numericPrice: 4799000, badge: 'Verified 1 Akun', popular: true },
+            { id: 16, category: 'bm-verified', groupLabel: 'BM VERIFIED RESMI', title: 'BM Verified Master — 5 Ad Accounts (No Limit)', subtitle: 'BM Verified resmi isi 5 akun iklan untuk agresivitas tinggi.', strikePrice: 'Rp 8.909.000', price: 'Rp 7.299.000', numericPrice: 7299000, badge: 'Verified 5 Akun' },
+            { id: 17, category: 'bm-verified', groupLabel: 'BM VERIFIED RESMI', title: 'BM Verified Ultimate — 10 Ad Accounts + Vault', subtitle: 'Kasta tertinggi BM Verified resmi isi 10 akun iklan No Limit.', strikePrice: 'Rp 13.500.000', price: 'Rp 11.499.000', numericPrice: 11499000, badge: 'Verified 10 Akun' },
+
+            // Fanpage & TikTok (4)
+            { id: 18, category: 'page-tiktok', groupLabel: 'FANPAGE & TIKTOK', title: 'Facebook Aged Fanpage (2015–2020) — Starter', subtitle: 'Halaman Facebook tua (0–100 followers) tahan pembatasan.', strikePrice: 'Rp 579.000', price: 'Rp 509.000', numericPrice: 509000, badge: 'Page 2015–2020' },
+            { id: 19, category: 'page-tiktok', groupLabel: 'FANPAGE & TIKTOK', title: 'Facebook Aged Fanpage (2015–2020) — 1K+ Likes', subtitle: 'Fanpage tua dengan 1.000+ followers organik untuk trust tinggi.', strikePrice: 'Rp 1.149.000', price: 'Rp 809.000', numericPrice: 809000, badge: '1K+ Followers' },
+            { id: 20, category: 'page-tiktok', groupLabel: 'FANPAGE & TIKTOK', title: 'Facebook Fanpage Ready Live & Ads (2020–2024)', subtitle: 'Fanpage siap fitur Live Streaming sekaligus kampanye konversi.', strikePrice: 'Rp 1.779.000', price: 'Rp 1.159.000', numericPrice: 1159000, badge: 'Ready Live' },
+            { id: 21, category: 'page-tiktok', groupLabel: 'FANPAGE & TIKTOK', title: 'TikTok Business Center (BM) Verified — 3 Akun', subtitle: 'BM TikTok terverifikasi berisi 3 akun iklan siap ekspansi.', strikePrice: 'Rp 1.569.000', price: 'Rp 1.159.000', numericPrice: 1159000, badge: 'TikTok Verified' }
+        ];
+
+        let activeShopeeCategory = 'all';
+
+        function renderShopeeCatalog() {
+            const searchVal = (document.getElementById('shopee-search').value || '').toLowerCase();
+            const grid = document.getElementById('shopee-products-grid');
+
+            const filtered = shopeeCatalogData.filter(item => {
+                const matchCat = activeShopeeCategory === 'all' || item.category === activeShopeeCategory;
+                const matchSearch = item.title.toLowerCase().includes(searchVal) || item.subtitle.toLowerCase().includes(searchVal);
+                return matchCat && matchSearch;
+            });
+
+            if (filtered.length === 0) {
+                grid.innerHTML = `<div class="col-span-full p-8 rounded-2xl surface-card text-center text-xs text-slate-400">Produk tidak ditemukan.</div>`;
+                return;
+            }
+
+            grid.innerHTML = filtered.map(item => `
+                <div class="surface-card surface-card-hover rounded-2xl p-5 flex flex-col justify-between h-full ${item.popular ? 'ring-1 ring-laju-pink/60' : ''}">
+                    <div>
+                        <div class="flex items-center justify-between gap-2 mb-2.5">
+                            <span class="text-[10px] font-mono font-bold text-slate-400 uppercase tracking-wider">${item.groupLabel}</span>
+                            <span class="px-2.5 py-0.5 rounded-full text-[10px] font-bold ${item.popular ? 'bg-laju-pink/20 text-pink-300 border border-laju-pink/40' : 'bg-white/5 text-slate-300 border border-white/10'} shrink-0">${item.badge}</span>
+                        </div>
+                        <h3 class="text-sm sm:text-base font-extrabold text-white leading-snug line-clamp-2">${item.title}</h3>
+                        <p class="text-xs text-slate-400 mt-1 line-clamp-2">${item.subtitle}</p>
+                    </div>
+
+                    <div class="mt-5 pt-4 border-t border-white/10">
+                        <div class="flex items-baseline justify-between mb-3.5">
+                            <span class="text-[11px] text-slate-500 line-through font-mono">${item.strikePrice}</span>
+                            <span class="text-lg font-extrabold text-laju-amber font-mono">${item.price}</span>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <button onclick="openShopeeModal('${item.title} (${item.price})')" class="h-9 flex-1 rounded-xl bg-[#EE4D2D] hover:bg-[#d73f20] text-white font-extrabold text-xs inline-flex items-center justify-center gap-1.5 transition-all">
+                                <svg class="w-3.5 h-3.5 fill-current shrink-0" viewBox="0 0 24 24"><path d="M19 6h-2c0-2.76-2.24-5-5-5S7 3.24 7 6H5c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2zm-7-3c1.66 0 3 1.34 3 3H9c0-1.66 1.34-3 3-3zm7 17H5V8h14v12zm-7-8c-1.66 0-3-1.34-3-3H7c0 2.76 2.24 5 5 5s5-2.24 5-5h-2c0 1.66-1.34 3-3 3z"/></svg>
+                                <span>Beli di Shopee</span>
+                            </button>
+                            <button onclick="openWaModal('Order Katalog: ${item.title} (${item.price})')" class="h-9 px-3 rounded-xl bg-emerald-500/15 hover:bg-emerald-500 text-emerald-300 hover:text-laju-navyDark border border-emerald-500/30 font-extrabold text-xs inline-flex items-center justify-center gap-1 transition-all" title="Order via WhatsApp">
+                                <svg class="w-3.5 h-3.5 fill-current shrink-0" viewBox="0 0 24 24"><path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766.001-3.187-2.575-5.77-5.764-5.771zm3.392 8.244c-.144.405-.837.774-1.17.824-.299.045-.677.063-1.092-.069-.252-.08-.575-.187-.988-.365-1.739-.751-2.874-2.502-2.961-2.617-.087-.116-.708-.94-.708-1.793s.448-1.273.607-1.446c.159-.173.346-.217.462-.217l.332.006c.106.005.249-.04.39.298.144.347.491 1.2.534 1.287.043.087.072.188.014.304-.058.116-.087.188-.173.289l-.26.304c-.087.086-.177.18-.076.354.101.174.449.741.964 1.201.662.591 1.221.774 1.394.86s.274.072.376-.043c.101-.116.433-.506.549-.68.116-.173.231-.145.39-.087s1.011.477 1.184.564.289.13.332.202c.045.072.045.419-.1.824zm-3.423-14.416c-6.627 0-12 5.373-12 12 0 2.625.846 5.059 2.284 7.033l-1.492 5.447 5.601-1.469c1.908 1.258 4.191 1.989 6.607 1.989 6.627 0 12-5.373 12-12s-5.373-12-12-12z"/></svg>
+                                <span>WA</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function setShopeeCategory(cat) {
+            activeShopeeCategory = cat;
+            ['all', 'personal-wl', 'bm-wl', 'bm-verified', 'page-tiktok'].forEach(c => {
+                const btn = document.getElementById(`cat-tab-${c}`);
+                btn.className = c === cat
+                    ? 'px-3.5 py-2 rounded-xl text-xs font-extrabold bg-[#EE4D2D] text-white transition-all'
+                    : 'px-3.5 py-2 rounded-xl text-xs font-bold bg-laju-navy text-slate-300 hover:text-white border border-white/10 transition-all';
+            });
+            renderShopeeCatalog();
+        }
+
+        function filterShopeeCatalog() {
+            renderShopeeCatalog();
+        }
+
+        renderShopeeCatalog();
+
+        // HERO CARD SWITCHER (NO "BULK" WORDING — USES MULTI-AKUN / EKSPANSI AGENSI)
+        const metaTierConfigs = {
+            starter: {
+                badge: 'AKUN WL NO LIMIT',
+                warranty: 'GARANSI 2X',
+                number: '5379 •••• •••• 8821',
+                fee: 'Fee 5%',
+                limit: 'Rp 1.499.000 / akun',
+                gradient: 'from-[#173464] via-[#0B1930] to-[#060F1E]'
+            },
+            bmpro: {
+                badge: 'FULL PACKAGE + CC',
+                warranty: 'GARANSI 1X & 2X',
+                number: '4532 •••• •••• 4419',
+                fee: 'Fee 5%',
+                limit: 'Rp 3.199.000 / paket',
+                gradient: 'from-[#3B1239] via-[#0B1930] to-[#060F1E]'
+            },
+            whales: {
+                badge: 'EKSPANSI MULTI-AKUN',
+                warranty: 'SPEND ≥ 1M FEE 3%',
+                number: '4916 •••• •••• 9901',
+                fee: 'Fee 4%–3%',
+                limit: 'Rp 999.000 / akun',
+                gradient: 'from-[#2A220B] via-[#0B1930] to-[#060F1E]'
+            }
+        };
+
+        function switchMetaTier(tier) {
+            const cfg = metaTierConfigs[tier];
+            ['starter', 'bmpro', 'whales'].forEach(t => {
+                const btn = document.getElementById(`tab-card-${t}`);
+                btn.className = t === tier
+                    ? 'px-2.5 py-1 rounded-lg text-[11px] font-extrabold bg-laju-blue text-white transition-all'
+                    : 'px-2.5 py-1 rounded-lg text-[11px] font-bold text-slate-400 hover:text-white transition-all';
+            });
+            document.getElementById('virtual-card-box').className = `rounded-2xl p-6 bg-gradient-to-br ${cfg.gradient} border border-white/20 shadow-xl relative overflow-hidden`;
+            document.getElementById('card-platform-badge').textContent = cfg.badge;
+            document.getElementById('card-warranty-badge').textContent = cfg.warranty;
+            document.getElementById('card-number-display').textContent = cfg.number;
+            document.getElementById('card-fee-display').textContent = cfg.fee;
+            document.getElementById('card-limit-display').textContent = cfg.limit;
+        }
+
+        document.getElementById('custom-card-name').addEventListener('input', function(e) {
+            const val = e.target.value.trim().toUpperCase();
+            document.getElementById('card-holder-display').textContent = val || 'NAMA ANDA';
+        });
+
+        // TOP-UP & BONUS CALCULATOR
+        const budgetSlider = document.getElementById('budget-slider');
+        const budgetInput = document.getElementById('budget-number-input');
+        const monthlyTierSelect = document.getElementById('calc-monthly-tier');
+        const openPkgSelect = document.getElementById('calc-open-pkg');
+
+        function formatIDR(num) {
+            return 'Rp ' + Math.round(num).toLocaleString('id-ID');
+        }
+
+        function updateCalculator() {
+            const spend = Math.max(0, parseInt(budgetInput.value) || 0);
+            const feePct = parseFloat(monthlyTierSelect.value) || 0.05;
+            const pctLabel = Math.round(feePct * 100) + '%';
+            const badgeText = feePct === 0.05 ? 'Fee Standar 5%' : (feePct === 0.04 ? 'Spend ≥ 1M • Fee 4%' : 'VIP ≥ 2M • Fee 3%');
+
+            const topupFee = spend * feePct;
+            const openCost = parseInt(openPkgSelect.value) || 0;
+            const totalTransfer = spend + topupFee + openCost;
+            const bonusCount = Math.floor(spend / 200000000);
+
+            document.getElementById('calc-rate-badge').textContent = badgeText;
+            document.getElementById('calc-fee-pct-text').textContent = pctLabel;
+            document.getElementById('calc-pure-spend').textContent = formatIDR(spend);
+            document.getElementById('calc-lajupay-fee').textContent = formatIDR(topupFee);
+            document.getElementById('calc-open-cost').textContent = formatIDR(openCost);
+            document.getElementById('calc-bonus-accounts').textContent = bonusCount > 0 ? `${bonusCount} Unit Gratis (Garansi 2x)` : '0 Unit (Min. 200 Jt)';
+            document.getElementById('calc-total-basic').textContent = formatIDR(totalTransfer);
+        }
+
+        budgetSlider.addEventListener('input', (e) => {
+            budgetInput.value = e.target.value;
+            updateCalculator();
+        });
+
+        budgetInput.addEventListener('input', (e) => {
+            const val = parseInt(e.target.value) || 0;
+            if (val <= 1000000000) budgetSlider.value = val;
+            updateCalculator();
+        });
+
+        updateCalculator();
+
+        function applyCalculatorToWa() {
+            const spend = parseInt(budgetInput.value) || 200000000;
+            const bonusCount = Math.floor(spend / 200000000);
+            const pctLabel = document.getElementById('calc-fee-pct-text').textContent;
+            const totalTransfer = document.getElementById('calc-total-basic').textContent;
+            openWaModal(`Top-Up Laju Pay ${formatIDR(spend)} (Fee ${pctLabel}) | Bonus ${bonusCount} Akun WL Gratis | Total ${totalTransfer}`);
+        }
+
+        // FAQ TOGGLE (6 QUESTIONS)
+        function toggleFaq(index) {
+            const content = document.getElementById(`faq-content-${index}`);
+            const icon = document.getElementById(`faq-icon-${index}`);
+            const isHidden = content.classList.contains('hidden');
+            content.classList.toggle('hidden', !isHidden);
+            icon.style.transform = isHidden ? 'rotate(180deg)' : 'rotate(0deg)';
+        }
+
+        // LEGAL MODAL CONTENT
+        const legalTexts = {
+            tos: {
+                title: 'Syarat & Ketentuan Layanan Laju Digital',
+                body: `<p><strong>1. Kepatuhan Konten Iklan:</strong> Seluruh infrastruktur akun dan kartu debit Laju Digital hanya diperuntukkan bagi kampanye bisnis yang sah dan mematuhi kebijakan periklanan Meta Ads &amp; TikTok Ads.</p>
+                       <p><strong>2. SOP Penggunaan Akun:</strong> Pelanggan wajib mematuhi SOP pemanasan IP selama 12–24 jam setelah serah terima akun dan menjaga kestabilan koneksi IP.</p>`
+            },
+            privacy: {
+                title: 'Kebijakan Privasi & Kerahasiaan Data',
+                body: `<p><strong>1. Kerahasiaan Kampanye:</strong> Laju Digital menjamin kerahasiaan data aset, struktur Business Manager, Pixel, serta riwayat mutasi kartu setiap klien.</p>
+                       <p><strong>2. Transparansi Mutasi:</strong> Bukti mutasi kartu debit hanya diberikan secara eksklusif kepada pemegang paket yang sah pada jam operasional 08.00 – 22.00 WIB.</p>`
+            },
+            warranty: {
+                title: 'Ketentuan Garansi & Skema Top-Up Laju Pay',
+                body: `<p><strong>1. Cakupan Garansi Sewa:</strong> Akun Personal dan Business Manager memperoleh 1x garansi penggantian, sedangkan Akun Iklan Whitelist No Limit memperoleh 2x garansi penggantian.</p>
+                       <p><strong>2. Jaminan Keamanan Saldo:</strong> Apabila terjadi kendala pada akun sewa, sisa saldo iklan dijamin 100% aman dan dapat dipindahkan ke akun pengganti.</p>
+                       <p><strong>3. Evaluasi Fee Bulanan:</strong> Penurunan fee ke 4%–3% berlaku saat akumulasi spend mencapai minimal Rp 1 Miliar pada bulan berjalan dan di-reset setiap pergantian bulan.</p>`
+            }
+        };
+
+        function openLegalModal(type) {
+            const info = legalTexts[type] || legalTexts.tos;
+            document.getElementById('legal-modal-title').textContent = info.title;
+            document.getElementById('legal-modal-body').innerHTML = info.body;
+            document.getElementById('legal-modal').classList.remove('hidden');
+        }
+
+        function closeLegalModal() {
+            document.getElementById('legal-modal').classList.add('hidden');
+        }
+
+        // MODALS & CLIPBOARD
+        function copyTextFallback(text) {
+            const ta = document.createElement('textarea');
+            ta.value = text;
+            document.body.appendChild(ta);
+            ta.select();
+            document.execCommand('copy');
+            document.body.removeChild(ta);
+        }
+
+        function openShopeeModal(itemName) {
+            document.getElementById('shopee-selected-item').textContent = itemName;
+            document.getElementById('shopee-order-code').textContent = `LAJU-SHP-${Math.floor(1000 + Math.random() * 9000)}`;
+            document.getElementById('shopee-modal').classList.remove('hidden');
+        }
+
+        function closeShopeeModal() {
+            document.getElementById('shopee-modal').classList.add('hidden');
+        }
+
+        function copyShopeeOrderCode() {
+            const item = document.getElementById('shopee-selected-item').textContent;
+            const code = document.getElementById('shopee-order-code').textContent;
+            copyTextFallback(`Order Shopee Laju Digital [${code}] — ${item}`);
+            const btn = document.getElementById('copy-shopee-btn');
+            btn.textContent = '✓ Tersalin';
+            setTimeout(() => { btn.innerHTML = '<i data-lucide="copy" class="w-3.5 h-3.5"></i> Salin Kode'; lucide.createIcons(); }, 1800);
+        }
+
+        function openWaModal(topicText) {
+            document.getElementById('wa-selected-item').textContent = topicText;
+            const msg = `Halo Admin Laju Digital,\nSaya ingin memesan / konsultasi:\n• ${topicText}\n\nMohon informasi ketersediaan & instruksi selanjutnya.`;
+            document.getElementById('wa-custom-message').value = msg;
+            document.getElementById('wa-direct-link').href = `https://api.whatsapp.com/send?text=${encodeURIComponent(msg)}`;
+            document.getElementById('wa-modal').classList.remove('hidden');
+        }
+
+        function closeWaModal() {
+            document.getElementById('wa-modal').classList.add('hidden');
+        }
+
+        document.getElementById('wa-custom-message').addEventListener('input', function() {
+            document.getElementById('wa-direct-link').href = `https://api.whatsapp.com/send?text=${encodeURIComponent(this.value)}`;
+        });
+
+        function copyWaMessage() {
+            copyTextFallback(document.getElementById('wa-custom-message').value);
+            const btn = document.getElementById('copy-wa-btn');
+            btn.textContent = '✓ Disalin';
+            setTimeout(() => { btn.innerHTML = '<i data-lucide="copy" class="w-3.5 h-3.5"></i> Salin Pesan'; lucide.createIcons(); }, 1800);
+        }
+
+        // =================================================================
+        // SPA HASH ROUTER FOR DEDICATED #/invoice (invoice.lajudigital.id)
+        // =================================================================
+        const STORAGE_KEY_ORDERS = 'laju_digital_wa_orders_v3';
+        const adminServiceCatalog = [
+            { title: 'Sewa Full Package All-in-One (Personal + BM + WL + FP + CC)', price: 3199000 },
+            { title: 'Sewa Akun Iklan Whitelist No Limit Saja', price: 1499000 },
+            { title: 'Paket Ekspansi Multi-Akun (Agensi & Scaling)', price: 999000 },
+            ...shopeeCatalogData.map(item => ({ title: item.title, price: item.numericPrice }))
+        ];
+
+        function populateAdminSelectOptions() {
+            const sel = document.getElementById('inv-item-select');
+            if (!sel) return;
+            sel.innerHTML = adminServiceCatalog.map((item, idx) =>
+                `<option value="${idx}">${item.title} (${formatIDR(item.price)})</option>`
+            ).join('');
+        }
+
+        function onAdminItemSelectChange() {
+            const idx = parseInt(document.getElementById('inv-item-select').value) || 0;
+            if (adminServiceCatalog[idx]) {
+                document.getElementById('inv-item-price').value = adminServiceCatalog[idx].price;
+                renderLiveInvoice();
+            }
+        }
+
+        function extractPriceFromTitle(text) {
+            const match = (text || '').match(/Rp\s*([0-9.]+)/i);
+            return match && match[1] ? parseInt(match[1].replace(/\./g, '')) : 1499000;
+        }
+
+        function getSavedOrders() {
+            try {
+                const raw = localStorage.getItem(STORAGE_KEY_ORDERS);
+                if (!raw) {
+                    const seed = [{
+                        invNo: 'INV/LAJU/2026/8821',
+                        clientName: 'Bpk. Rendra Pratama',
+                        clientOrg: 'ScaleUp Digital ID',
+                        itemTitle: 'Sewa Full Package All-in-One (Personal + BM + WL + FP + CC)',
+                        itemPrice: 3199000,
+                        topupAmount: 10000000,
+                        status: 'LUNAS (PAID)'
+                    }];
+                    localStorage.setItem(STORAGE_KEY_ORDERS, JSON.stringify(seed));
+                    return seed;
+                }
+                return JSON.parse(raw);
+            } catch (e) {
+                return [];
+            }
+        }
+
+        function saveOrderToHistory(orderObj) {
+            try {
+                const list = getSavedOrders();
+                list.unshift(orderObj);
+                localStorage.setItem(STORAGE_KEY_ORDERS, JSON.stringify(list.slice(0, 15)));
+                renderSavedOrdersQueue();
+            } catch (e) {}
+        }
+
+        function recordWaOrderToBackend() {
+            const topic = document.getElementById('wa-selected-item').textContent || 'Order WhatsApp';
+            saveOrderToHistory({
+                invNo: `INV/LAJU/2026/${Math.floor(1000 + Math.random() * 9000)}`,
+                clientName: 'Pelanggan WhatsApp',
+                clientOrg: 'Order Direct WA',
+                itemTitle: topic,
+                itemPrice: extractPriceFromTitle(topic),
+                topupAmount: 0,
+                status: 'MENUNGGU PEMBAYARAN'
+            });
+        }
+
+        function renderSavedOrdersQueue() {
+            const orders = getSavedOrders();
+            const countEl = document.getElementById('admin-order-count');
+            const listEl = document.getElementById('admin-orders-list');
+            if (!countEl || !listEl) return;
+            countEl.textContent = `${orders.length} Order`;
+            listEl.innerHTML = orders.map((o, idx) => `
+                <div class="p-2.5 rounded-xl bg-laju-navy border border-white/10 flex items-center justify-between gap-2">
+                    <div class="truncate">
+                        <span class="font-mono font-bold text-laju-amber text-[11px]">${o.invNo}</span>
+                        <span class="text-slate-300 font-semibold ml-1">${o.clientName}</span>
+                        <p class="text-[10px] text-slate-400 truncate">${o.itemTitle}</p>
+                    </div>
+                    <button onclick="loadOrderIntoEditor(${idx})" class="px-2.5 py-1 rounded-lg bg-laju-blue text-white font-bold text-[10px] shrink-0">Muat</button>
+                </div>
+            `).join('');
+        }
+
+        function loadOrderIntoEditor(idx) {
+            const o = getSavedOrders()[idx];
+            if (!o) return;
+            document.getElementById('inv-no').value = o.invNo;
+            document.getElementById('inv-status').value = o.status || 'LUNAS (PAID)';
+            document.getElementById('inv-client-name').value = o.clientName;
+            document.getElementById('inv-client-org').value = o.clientOrg;
+            document.getElementById('inv-item-price').value = o.itemPrice || 1499000;
+            document.getElementById('inv-topup-amount').value = o.topupAmount || 0;
+            const matchIdx = adminServiceCatalog.findIndex(item => o.itemTitle.toLowerCase().includes(item.title.slice(0, 14).toLowerCase()));
+            if (matchIdx >= 0) document.getElementById('inv-item-select').value = matchIdx;
+            renderLiveInvoice();
+        }
+
+        function createNewBlankInvoice() {
+            document.getElementById('inv-no').value = `INV/LAJU/2026/${Math.floor(1000 + Math.random() * 9000)}`;
+            document.getElementById('inv-client-name').value = 'Nama Klien';
+            document.getElementById('inv-client-org').value = 'Nama Brand / Agensi';
+            document.getElementById('inv-item-qty').value = 1;
+            document.getElementById('inv-topup-amount').value = 0;
+            renderLiveInvoice();
+        }
+
+        function renderLiveInvoice() {
+            const invNo = document.getElementById('inv-no').value || 'INV/LAJU/2026/8821';
+            const status = document.getElementById('inv-status').value;
+            const clientName = document.getElementById('inv-client-name').value || 'Pelanggan Laju Digital';
+            const clientOrg = document.getElementById('inv-client-org').value || '-';
+            const selIdx = parseInt(document.getElementById('inv-item-select').value) || 0;
+            const itemObj = adminServiceCatalog[selIdx] || adminServiceCatalog[0];
+            const itemPrice = parseInt(document.getElementById('inv-item-price').value) || 0;
+            const itemQty = parseInt(document.getElementById('inv-item-qty').value) || 1;
+            const topupAmount = parseInt(document.getElementById('inv-topup-amount').value) || 0;
+            const feeRate = parseFloat(document.getElementById('inv-topup-fee-rate').value) || 0;
+            const notes = document.getElementById('inv-notes').value || '-';
+
+            const subItem = itemPrice * itemQty;
+            const feeNominal = Math.round(topupAmount * feeRate);
+            const subTopup = topupAmount + feeNominal;
+            const grandTotal = subItem + subTopup;
+            const bonusAccounts = Math.floor(topupAmount / 200000000);
+
+            document.getElementById('preview-inv-no').textContent = invNo;
+            document.getElementById('preview-inv-date').textContent = 'Tanggal: ' + new Date().toLocaleDateString('id-ID', { day: '2-digit', month: 'short', year: 'numeric' });
+            document.getElementById('preview-client-name').textContent = clientName;
+            document.getElementById('preview-client-org').textContent = clientOrg;
+            document.getElementById('preview-inv-notes').textContent = notes;
+
+            const statusBadge = document.getElementById('preview-inv-status');
+            statusBadge.textContent = status;
+            statusBadge.className = status.includes('LUNAS')
+                ? 'inline-block px-2.5 py-0.5 rounded-full text-[10px] font-extrabold bg-emerald-100 text-emerald-800 border border-emerald-300'
+                : 'inline-block px-2.5 py-0.5 rounded-full text-[10px] font-extrabold bg-amber-100 text-amber-800 border border-amber-300';
+
+            let rows = `
+                <tr>
+                    <td class="py-2.5 font-bold text-[#0B1930]">${itemObj.title}</td>
+                    <td class="py-2.5 text-center font-mono">${itemQty}</td>
+                    <td class="py-2.5 text-right font-mono">${formatIDR(itemPrice)}</td>
+                    <td class="py-2.5 text-right font-mono font-bold">${formatIDR(subItem)}</td>
+                </tr>
+            `;
+            if (topupAmount > 0) {
+                rows += `
+                    <tr>
+                        <td class="py-2.5 text-slate-700">Top-Up Saldo Iklan Laju Pay</td>
+                        <td class="py-2.5 text-center font-mono">1</td>
+                        <td class="py-2.5 text-right font-mono">${formatIDR(topupAmount)}</td>
+                        <td class="py-2.5 text-right font-mono font-bold">${formatIDR(topupAmount)}</td>
+                    </tr>
+                    <tr>
+                        <td class="py-2.5 text-slate-600">Service Fee Top-Up (${Math.round(feeRate * 100)}%)</td>
+                        <td class="py-2.5 text-center font-mono">1</td>
+                        <td class="py-2.5 text-right font-mono">${formatIDR(feeNominal)}</td>
+                        <td class="py-2.5 text-right font-mono font-bold">${formatIDR(feeNominal)}</td>
+                    </tr>
+                `;
+            }
+            if (bonusAccounts > 0) {
+                rows += `
+                    <tr class="bg-emerald-50">
+                        <td class="py-2 px-2 font-bold text-emerald-800">Bonus Kelipatan Rp 200 Jt: Gratis Akun WL No Limit (Garansi 2x)</td>
+                        <td class="py-2 text-center font-mono font-bold text-emerald-800">${bonusAccounts}</td>
+                        <td class="py-2 text-right font-mono text-emerald-700">GRATIS</td>
+                        <td class="py-2 text-right font-mono font-bold text-emerald-800">Rp 0</td>
+                    </tr>
+                `;
+            }
+
+            document.getElementById('preview-items-tbody').innerHTML = rows;
+            document.getElementById('preview-sub-item').textContent = formatIDR(subItem);
+            document.getElementById('preview-fee-pct').textContent = `${Math.round(feeRate * 100)}%`;
+            document.getElementById('preview-sub-topup').textContent = formatIDR(subTopup);
+            document.getElementById('preview-bonus-wl').textContent = `${bonusAccounts} Unit Gratis`;
+            document.getElementById('preview-grand-total').textContent = formatIDR(grandTotal);
+        }
+
+        function downloadInvoiceAsPNG() {
+            const invNo = (document.getElementById('inv-no').value || 'INV-LAJU-2026').replace(/\//g, '-');
+            const target = document.getElementById('invoice-printable-area');
+            if (window.html2canvas && target) {
+                window.html2canvas(target, { scale: 2, backgroundColor: '#ffffff' }).then(canvas => {
+                    const link = document.createElement('a');
+                    link.download = `${invNo}.png`;
+                    link.href = canvas.toDataURL('image/png');
+                    link.click();
+                });
+            }
+        }
+
+        function printOrSaveInvoicePDF() {
+            const content = document.getElementById('invoice-printable-area').innerHTML;
+            const printWin = window.open('', '_blank', 'width=900,height=700');
+            if (!printWin) {
+                downloadInvoiceAsPNG();
+                return;
+            }
+            printWin.document.write(`
+                <!DOCTYPE html>
+                <html>
+                <head>
+                    <title>Invoice Resmi Laju Digital</title>
+                    <script src="https://cdn.tailwindcss.com"><\/script>
+                    <style>
+                        body { font-family: sans-serif; padding: 24px; background: #fff; color: #0f172a; }
+                        .brand-bar-border { background: linear-gradient(90deg, #2563EB 0%, #FF2E7E 50%, #FFB800 100%); }
+                    </style>
+                </head>
+                <body>
+                    ${content}
+                    <script>window.onload = function() { setTimeout(function() { window.print(); }, 350); };<\/script>
+                </body>
+                </html>
+            `);
+            printWin.document.close();
+        }
+
+        function handleRouteChange() {
+            const hash = window.location.hash;
+            const params = new URLSearchParams(window.location.search);
+            const isInvoiceRoute = hash === '#/invoice' || hash === '#invoice' || params.get('page') === 'invoice';
+
+            const publicView = document.getElementById('public-app-view');
+            const invoiceView = document.getElementById('invoice-portal-view');
+
+            if (isInvoiceRoute) {
+                publicView.classList.add('hidden');
+                invoiceView.classList.remove('hidden');
+                populateAdminSelectOptions();
+                renderSavedOrdersQueue();
+                renderLiveInvoice();
+                window.scrollTo(0, 0);
+            } else {
+                invoiceView.classList.add('hidden');
+                publicView.classList.remove('hidden');
+            }
+            lucide.createIcons();
+        }
+
+        window.addEventListener('hashchange', handleRouteChange);
+        handleRouteChange();
+    </script>
+</body>
+</html>
